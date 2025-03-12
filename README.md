@@ -1,4 +1,4 @@
-# spike_hub
+# Spike Hub
 
 A new Flutter project.
 
