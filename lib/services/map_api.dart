@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'valorant_api.dart';
 import '../models/maps.dart';
+import 'valorant_api.dart';
 
 class MapApi extends ValorantApi {
   Future<Iterable<Maps>> getMaps() async {

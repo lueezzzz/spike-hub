@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'valorant_api.dart';
 import '../models/agents.dart';
+import 'valorant_api.dart';
 
 class AgentsApi extends ValorantApi{
 

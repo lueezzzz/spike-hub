@@ -3,6 +3,7 @@ class Weapon {
   String? displayName;
   String? displayIcon;
   String? defaultSkinUuid;
+  String? category;
   Stats? weaponStats;
   ShopData? shopData;
 
@@ -11,6 +12,7 @@ class Weapon {
     this.displayName,
     this.displayIcon,
     this.defaultSkinUuid,
+    this.category,
     this.weaponStats,
     this.shopData,
   });
@@ -20,11 +22,29 @@ class Weapon {
     displayName = json['displayName'];
     displayIcon = json['displayIcon'];
     defaultSkinUuid = json['defaultSkinUuid'];
+    category = json['category'];
     weaponStats = json['weaponStats'] != null
         ? Stats.fromJson(json['weaponStats'])
         : null;
     shopData =
         json['shopData'] != null ? ShopData.fromJson(json['shopData']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['uuid'] = uuid;
+    data['displayName'] = displayName;
+    data['displayIcon'] = displayIcon;
+    data['defaultSkinUuid'] = defaultSkinUuid;
+    data['category'] = category;
+    if (weaponStats != null) {
+      data['weaponStats'] = weaponStats!.toJson();
+    }
+    if (shopData != null) {
+      data['shopData'] = shopData!.toJson();
+    }
+
+    return data;
   }
 }
 
