@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spike_hub/widgets/agent-widgets/agent_details.dart';
 import '../../models/agents.dart';
 
 class AgentCard extends StatelessWidget {
@@ -11,12 +12,14 @@ class AgentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => )
-        )
-      },
+      // onTap: () => {
+      //   Navigator.push(
+      //     context,
+      //     MaterialPageRoute(builder: (context) => const AgentDetails())
+      //   )
+      // },
+      child: null,
+    
     );
   }
 }
