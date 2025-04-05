@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spike_hub/models/agents.dart';
 import 'package:spike_hub/services/agents_api.dart';
 import 'package:spike_hub/widgets/agent-widgets/agent_card.dart';
-import 'package:spike_hub/widgets/agent-widgets/custom_search_bar.dart';
+import 'package:spike_hub/widgets/custom_search_bar.dart';
 
 class Home extends StatefulWidget {
   @override
