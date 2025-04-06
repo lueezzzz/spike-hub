@@ -3,6 +3,7 @@ class Maps {
   String? displayName;
   String? displayIcon;
   String? listViewIcon;
+  String? listViewIconTall;
   String? splash;
 
   Maps(
@@ -10,6 +11,7 @@ class Maps {
       this.displayName,
       this.displayIcon,
       this.listViewIcon,
+      this.listViewIconTall,
       this.splash});
 
   Maps.fromJson(Map<String, dynamic> json) {
@@ -17,6 +19,7 @@ class Maps {
     displayName = json['displayName'];
     displayIcon = json['displayIcon'];
     listViewIcon = json['listViewIcon'];
+    listViewIconTall = json['listViewIconTall'];
     splash = json['splash'];
   }
 
@@ -26,6 +29,7 @@ class Maps {
     data['displayName'] = displayName;
     data['displayIcon'] = displayIcon;
     data['listViewIcon'] = listViewIcon;
+    data['listViewIconTall'] = listViewIconTall;
     data['splash'] = splash;
 
     return data;

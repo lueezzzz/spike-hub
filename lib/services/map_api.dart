@@ -7,7 +7,7 @@ class MapApi extends ValorantApi {
     Iterable<Maps> maps = [];
 
     try {
-      Response response = await super.dio.get("${super.url}/v1/maps");
+      Response response = await super.dio.get("${super.url}v1/maps");
       List mapData = response.data['data'];
       maps = mapData.map((map) => Maps.fromJson(map));
     } on DioException catch (err) {
