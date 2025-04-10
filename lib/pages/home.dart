@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
             CustomSearchBar(),
             if (!showAll)
               const SizedBox(
-                  height: 275), // Show placeholder only if not expanded
+                  height: 275), 
             Expanded(
               child: Tabs(
                 showAll: showAll,
