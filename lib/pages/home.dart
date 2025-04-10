@@ -61,8 +61,17 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-
-          // Side menu
+          if (isSideMenuOpen)
+            Positioned.fill(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isSideMenuOpen = false;
+                  });
+                },
+                child: Container(color: Colors.transparent),
+              ),
+            ),
           AnimatedPositioned(
             duration: Duration(milliseconds: 200),
             right: isSideMenuOpen ? 0 : -200,
