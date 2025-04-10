@@ -20,7 +20,21 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             SearchItem(),
-            if (!showAll) const SizedBox(height: 275),
+            if (!showAll)
+              Container(
+                height: 275,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Color.fromRGBO(31, 35, 38, 1),
+                      Color.fromRGBO(31, 35, 38, 0.6),
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+              ),
             Expanded(
               child: Tabs(
                 showAll: showAll,

@@ -37,10 +37,9 @@ class FutureBuildView<T> extends StatelessWidget {
         final visibleItems = showAll ? items : items.take(limit).toList();
 
         if (crossAxisCount == 1) {
-
           return ListView.separated(
             padding:
-                const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
+                const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20.0),
             itemCount: visibleItems.length,
             separatorBuilder: (context, index) =>
                 SizedBox(height: mainAxisSpacing),
@@ -50,7 +49,7 @@ class FutureBuildView<T> extends StatelessWidget {
         }
 
         return GridView.builder(
-          padding: const EdgeInsets.all(25.0),
+          padding: const EdgeInsets.fromLTRB(25.0, 20.0, 25.0, 40.0),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: crossAxisSpacing,

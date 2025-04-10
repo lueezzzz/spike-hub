@@ -86,8 +86,8 @@ class Tabs extends StatelessWidget {
                       MapCard(map: item, index: index),
                   limit: showAll ? 999 : 4,
                   axisCount: 1,
-                  axisSpacing: 30,
-                  mainSpacing: 0,
+                  axisSpacing: 0,
+                  mainSpacing: 25,
                 ),
                 _buildTabContent<Weapon>(
                   context: context,
@@ -99,8 +99,8 @@ class Tabs extends StatelessWidget {
                       WeaponCard(weapon: item, index: index),
                   limit: showAll ? 999 : 6,
                   axisCount: 1,
-                  axisSpacing: 30,
-                  mainSpacing: 0,
+                  axisSpacing: 0,
+                  mainSpacing: 25,
                 ),
                 _buildTabContent<Gear>(
                   context: context,
