@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 class FutureGridview<T> extends StatelessWidget {
   final Future<List<T>> future;
   final Widget Function(BuildContext, T, int) itemBuilder;
+  final bool showAll;
+  final int limit;
 
   const FutureGridview({
     required this.future,
     required this.itemBuilder,
+    this.showAll = false,
+    this.limit = 8,
     super.key,
   });
 
@@ -24,6 +28,7 @@ class FutureGridview<T> extends StatelessWidget {
         }
 
         final items = snapshot.data ?? [];
+        final visibleItems = showAll ? items : items.take(limit).toList();
 
         return GridView.builder(
           padding: const EdgeInsets.all(10),
@@ -32,9 +37,9 @@ class FutureGridview<T> extends StatelessWidget {
             crossAxisSpacing: 20,
             childAspectRatio: 3 / 4,
           ),
-          itemCount: items.length,
+          itemCount: visibleItems.length,
           itemBuilder: (context, index) =>
-              itemBuilder(context, items[index], index),
+              itemBuilder(context, visibleItems[index], index),
         );
       },
     );
