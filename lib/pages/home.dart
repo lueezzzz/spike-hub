@@ -35,27 +35,29 @@ class _HomeState extends State<Home> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Color(0xFF1F2326),
-        height: 60,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset(
-                'assets/images/valorant-logo.png',
-                height: 30,
-                width: 20,
+        color: Color.fromRGBO(31, 35, 38, 1),
+        height: 50,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+                padding: EdgeInsets.only(top: 7.0),
+                child: Container(
+                  width: 40,
+                  height: 30,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/valorant-logo.png'),
+                          fit: BoxFit.contain)),
+                )),
+            SizedBox(
+              child: Icon(
+                Icons.menu,
+                color: Color.fromRGBO(248, 248, 248, 1),
+                size: 30,
               ),
-              Container(
-                color: Colors.white,
-                child: Icon(
-                  Icons.menu,
-                  color: Color(0xFF1F2326),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

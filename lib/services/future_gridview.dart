@@ -35,8 +35,7 @@ class FutureGridview<T> extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
             crossAxisSpacing: 30,
-            mainAxisSpacing: 30,
-            childAspectRatio: 1 / 1,
+            mainAxisSpacing: 40,
           ),
           itemCount: visibleItems.length,
           itemBuilder: (context, index) =>

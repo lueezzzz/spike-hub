@@ -140,9 +140,18 @@ class Tabs extends StatelessWidget {
             child: const Text(
               "SEE ALL",
               style: TextStyle(
-                  color: Color.fromRGBO(31, 35, 38, 1),
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.6),
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.6,
+                shadows: [
+                  Shadow(
+                      color: Color.fromRGBO(31, 35, 38, 1),
+                      offset: Offset(0.5, -5))
+                ],
+                color: Colors.transparent,
+                decoration: TextDecoration.underline,
+                decorationColor: Color.fromRGBO(31, 35, 38, 1),
+                decorationThickness: 4,
+              ),
             ),
           ),
       ],
