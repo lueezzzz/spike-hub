@@ -6,7 +6,7 @@ import 'package:spike_hub/models/maps.dart';
 import 'package:spike_hub/models/weapons.dart';
 import 'package:spike_hub/services/agents_api.dart';
 import 'package:spike_hub/services/collapse_items.dart';
-import 'package:spike_hub/services/future_gridview.dart';
+import 'package:spike_hub/services/future_build_view.dart';
 import 'package:spike_hub/services/gears_api.dart';
 import 'package:spike_hub/services/map_api.dart';
 import 'package:spike_hub/services/weapons_api.dart';
@@ -73,9 +73,10 @@ class Tabs extends StatelessWidget {
                       AgentsApi().getAgents().then((agents) => agents.toList()),
                   itemBuilder: (context, item, index) =>
                       AgentCard(agent: item, index: index),
-                  limit: showAll
-                      ? 999
-                      : 6, // Display all when showAll is true, else 8
+                  limit: showAll ? 999 : 6,
+                  axisCount: 3,
+                  axisSpacing: 30,
+                  mainSpacing: 40,
                 ),
                 _buildTabContent<Maps>(
                   context: context,
@@ -83,7 +84,10 @@ class Tabs extends StatelessWidget {
                   future: MapApi().getMaps().then((maps) => maps.toList()),
                   itemBuilder: (context, item, index) =>
                       MapCard(map: item, index: index),
-                  limit: showAll ? 999 : 4, // Display 4 maps when not expanded
+                  limit: showAll ? 999 : 4,
+                  axisCount: 1,
+                  axisSpacing: 30,
+                  mainSpacing: 0,
                 ),
                 _buildTabContent<Weapon>(
                   context: context,
@@ -93,8 +97,10 @@ class Tabs extends StatelessWidget {
                       .then((weapons) => weapons.toList()),
                   itemBuilder: (context, item, index) =>
                       WeaponCard(weapon: item, index: index),
-                  limit:
-                      showAll ? 999 : 6, // Display 6 weapons when not expanded
+                  limit: showAll ? 999 : 6,
+                  axisCount: 1,
+                  axisSpacing: 30,
+                  mainSpacing: 0,
                 ),
                 _buildTabContent<Gear>(
                   context: context,
@@ -102,7 +108,10 @@ class Tabs extends StatelessWidget {
                   future: GearsApi().getGears().then((gears) => gears.toList()),
                   itemBuilder: (context, item, index) =>
                       GearCard(gear: item, index: index),
-                  limit: showAll ? 999 : 5, // Display 5 gears when not expanded
+                  limit: showAll ? 999 : 5,
+                  axisCount: 3,
+                  axisSpacing: 30,
+                  mainSpacing: 40,
                 ),
               ],
             ),
@@ -117,7 +126,10 @@ class Tabs extends StatelessWidget {
     required String title,
     required Future<List<T>> future,
     required Widget Function(BuildContext, T, int) itemBuilder,
-    required int limit, // Accept limit parameter here
+    required int limit,
+    required int axisCount,
+    required double axisSpacing,
+    required double mainSpacing,
   }) {
     return Column(
       children: [
@@ -127,11 +139,14 @@ class Tabs extends StatelessWidget {
             title: title,
           ),
         Expanded(
-          child: FutureGridview<T>(
+          child: FutureBuildView<T>(
             future: future,
             itemBuilder: itemBuilder,
             showAll: showAll,
-            limit: limit, // Pass the limit dynamically
+            limit: limit,
+            crossAxisCount: axisCount,
+            crossAxisSpacing: axisSpacing,
+            mainAxisSpacing: mainSpacing,
           ),
         ),
         if (!showAll)

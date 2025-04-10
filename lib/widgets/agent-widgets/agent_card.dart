@@ -4,8 +4,7 @@ import 'package:spike_hub/widgets/agent-widgets/agent_details.dart';
 import '../../models/agents.dart';
 
 class AgentCard extends StatelessWidget {
-  AgentCard({Key? key, required this.agent, required this.index})
-      : super(key: key);
+  AgentCard({required this.agent, required this.index, super.key});
 
   Agent agent;
   int index;
@@ -27,7 +26,7 @@ class AgentCard extends StatelessWidget {
                 child: Container(
                   width: 100,
                   child: Text(
-                    "My Text",
+                    agent.displayName!,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Color.fromRGBO(15, 25, 35, 1),

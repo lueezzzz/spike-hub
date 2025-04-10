@@ -19,6 +19,7 @@ class MapCard extends StatelessWidget {
       // },
       child: SizedBox(
         width: 120,
+        height: 150,
         child: Stack(
           alignment: Alignment.center,
           children: [

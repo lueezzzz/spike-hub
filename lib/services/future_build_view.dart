@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
-class FutureGridview<T> extends StatelessWidget {
+class FutureBuildView<T> extends StatelessWidget {
   final Future<List<T>> future;
   final Widget Function(BuildContext, T, int) itemBuilder;
   final bool showAll;
   final int limit;
+  final int crossAxisCount;
+  final double crossAxisSpacing;
+  final double mainAxisSpacing;
 
-  const FutureGridview({
+  const FutureBuildView({
     required this.future,
     required this.itemBuilder,
     required this.limit,
+    required this.crossAxisCount,
+    required this.crossAxisSpacing,
+    required this.mainAxisSpacing,
     this.showAll = false,
     super.key,
   });
@@ -30,12 +36,25 @@ class FutureGridview<T> extends StatelessWidget {
         final items = snapshot.data ?? [];
         final visibleItems = showAll ? items : items.take(limit).toList();
 
+        if (crossAxisCount == 1) {
+
+          return ListView.separated(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
+            itemCount: visibleItems.length,
+            separatorBuilder: (context, index) =>
+                SizedBox(height: mainAxisSpacing),
+            itemBuilder: (context, index) =>
+                itemBuilder(context, visibleItems[index], index),
+          );
+        }
+
         return GridView.builder(
           padding: const EdgeInsets.all(25.0),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 30,
-            mainAxisSpacing: 40,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: crossAxisSpacing,
+            mainAxisSpacing: mainAxisSpacing,
           ),
           itemCount: visibleItems.length,
           itemBuilder: (context, index) =>

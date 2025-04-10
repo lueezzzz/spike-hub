@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:spike_hub/models/weapons.dart';
 
 class WeaponCard extends StatelessWidget {
-  WeaponCard({Key? key, required this.weapon, required this.index}) : super(key: key);
+  WeaponCard({Key? key, required this.weapon, required this.index})
+      : super(key: key);
 
   Weapon weapon;
   int index;
@@ -19,6 +20,7 @@ class WeaponCard extends StatelessWidget {
       // },
       child: SizedBox(
         width: 120,
+        height: 150,
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -27,8 +29,7 @@ class WeaponCard extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   image: DecorationImage(
-                      image:
-                          CachedNetworkImageProvider(weapon.displayIcon!))),
+                      image: CachedNetworkImageProvider(weapon.displayIcon!))),
             )
           ],
         ),
