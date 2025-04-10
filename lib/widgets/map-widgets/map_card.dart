@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:spike_hub/models/maps.dart';
+import 'package:spike_hub/widgets/map-widgets/map_details.dart';
 
 class MapCard extends StatelessWidget {
-  MapCard({Key? key, required this.map, required this.index}) : super(key: key);
+  MapCard({required this.map, required this.index, super.key});
 
   Maps map;
   int index;
@@ -11,12 +12,25 @@ class MapCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => {
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(builder: (context) => const AgentDetails())
-      //   )
-      // },
+      onTap: () {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          builder: (context) => DraggableScrollableSheet(
+            initialChildSize: 0.5,
+            minChildSize: 0.3,
+            maxChildSize: 0.9,
+            expand: false,
+            builder: (context, scrollController) {
+              return MapDetails(
+                maps: map,
+                scrollController: scrollController,
+              );
+            },
+          ),
+        );
+      },
       child: SizedBox(
         width: 150,
         height: 120,
@@ -63,7 +77,7 @@ class MapCard extends StatelessWidget {
               bottom: 15,
               left: 20,
               child: Text(
-                'Map',
+                map.displayName!,
                 style: TextStyle(
                     color: Color.fromRGBO(248, 248, 248, 1),
                     fontSize: 20,
