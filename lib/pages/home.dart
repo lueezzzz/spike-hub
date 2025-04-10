@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spike_hub/widgets/custom_search_bar.dart';
+import 'package:spike_hub/widgets/search/search_item.dart';
 import 'package:spike_hub/widgets/tabs.dart';
 
 class Home extends StatefulWidget {
@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: Column(
           children: [
-            CustomSearchBar(),
+            SearchItem(),
             if (!showAll)
               Container(
                 height: 275,
