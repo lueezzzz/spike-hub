@@ -55,9 +55,7 @@ class Tabs extends StatelessWidget {
             ),
           Expanded(
             child: TabBarView(
-
               children: [
-                
                 _buildTabContent<Agent>(
                   context: context,
                   title: "AGENTS",
@@ -67,7 +65,7 @@ class Tabs extends StatelessWidget {
                       AgentCard(agent: item, index: index),
                   limit: showAll
                       ? 999
-                      : 8, // Display all when showAll is true, else 8
+                      : 6, // Display all when showAll is true, else 8
                 ),
                 _buildTabContent<Maps>(
                   context: context,
@@ -131,7 +129,7 @@ class Tabs extends StatelessWidget {
             onPressed: () => onSeeAllChanged(true),
             child: const Text(
               "SEE ALL",
-              style: TextStyle(color: Colors.white, letterSpacing: 1.6 ),
+              style: TextStyle(color: Colors.white, letterSpacing: 1.6),
             ),
           ),
       ],

@@ -9,8 +9,8 @@ class FutureGridview<T> extends StatelessWidget {
   const FutureGridview({
     required this.future,
     required this.itemBuilder,
+    required this.limit,
     this.showAll = false,
-    this.limit = 8,
     super.key,
   });
 
