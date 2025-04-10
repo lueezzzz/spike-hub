@@ -18,18 +18,58 @@ class MapCard extends StatelessWidget {
       //   )
       // },
       child: SizedBox(
-        width: 120,
-        height: 150,
+        width: 150,
+        height: 120,
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Container(
-              height: 100,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
+            Positioned(
+                top: 15,
+                left: 10,
+                child: Material(
+                    clipBehavior: Clip.antiAlias,
+                    shape: BeveledRectangleBorder(
+                      side: BorderSide(
+                          color: Color.fromRGBO(15, 25, 35, 1), width: 1),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15.0),
+                      ),
+                    ),
+                    child: Container(
+                      color: Color.fromRGBO(15, 25, 35, 1),
+                      width: 350,
+                      height: 100,
+                    ))),
+            Material(
+              clipBehavior: Clip.antiAlias,
+              shape: BeveledRectangleBorder(
+                side:
+                    BorderSide(color: Color.fromRGBO(15, 25, 35, 1), width: 1),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15.0),
+                ),
+              ),
+              child: Container(
+                width: 350,
+                height: 100,
+                decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: CachedNetworkImageProvider(map.listViewIcon!))),
-            )
+                      image: CachedNetworkImageProvider(map.listViewIcon!),
+                      fit: BoxFit.fill),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 15,
+              left: 20,
+              child: Text(
+                'Map',
+                style: TextStyle(
+                    color: Color.fromRGBO(248, 248, 248, 1),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
           ],
         ),
       ),
