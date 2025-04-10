@@ -70,8 +70,6 @@ class _HomeState extends State<Home> {
             bottom: 0,
             width: 200,
             child: GestureDetector(
-              // This prevents taps on the menu from closing it
-              onTap: () {},
               child: Container(
                 color: Color.fromRGBO(31, 35, 38, 1),
                 child: SafeArea(
