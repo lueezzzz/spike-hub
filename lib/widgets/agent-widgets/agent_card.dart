@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:spike_hub/widgets/agent-widgets/agent_details.dart';
 import '../../models/agents.dart';
 
 class AgentCard extends StatelessWidget {
