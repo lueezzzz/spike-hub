@@ -31,11 +31,12 @@ class FutureGridview<T> extends StatelessWidget {
         final visibleItems = showAll ? items : items.take(limit).toList();
 
         return GridView.builder(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(25.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            crossAxisSpacing: 20,
-            childAspectRatio: 3 / 4,
+            crossAxisCount: 3,
+            crossAxisSpacing: 30,
+            mainAxisSpacing: 30,
+            childAspectRatio: 1 / 1,
           ),
           itemCount: visibleItems.length,
           itemBuilder: (context, index) =>

@@ -15,14 +15,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromRGBO(255, 70, 86, 1),
       body: SafeArea(
         child: Column(
           children: [
             CustomSearchBar(),
-            if (!showAll)
-              const SizedBox(
-                  height: 275), 
+            if (!showAll) const SizedBox(height: 275),
             Expanded(
               child: Tabs(
                 showAll: showAll,

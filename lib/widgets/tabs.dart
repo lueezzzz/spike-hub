@@ -32,26 +32,36 @@ class Tabs extends StatelessWidget {
       child: Column(
         children: [
           if (!showAll)
-            TabBar(
-              labelStyle: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.2,
+            Material(
+              color: Color.fromRGBO(31, 35, 38, 1),
+              shape: BeveledRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10.0),
+                  bottomRight: Radius.circular(10.0),
+                ),
               ),
-              indicator: MaterialIndicator(
-                color: Colors.redAccent,
-                tabPosition: TabPosition.bottom,
-                topLeftRadius: 25.0,
-                topRightRadius: 25.0,
+              child: TabBar(
+                labelStyle: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                ),
+                indicator: MaterialIndicator(
+                  color: Color.fromRGBO(248, 248, 248, 1),
+                  tabPosition: TabPosition.bottom,
+                  topLeftRadius: 25.0,
+                  topRightRadius: 25.0,
+                ),
+                labelColor: Color.fromRGBO(248, 248, 248, 1),
+                unselectedLabelColor: Color.fromRGBO(248, 248, 248, 0.3),
+                dividerColor: Colors.transparent,
+                tabs: const [
+                  Tab(text: "AGENTS"),
+                  Tab(text: "MAPS"),
+                  Tab(text: "WEAPONS"),
+                  Tab(text: "GEARS"),
+                ],
               ),
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.grey,
-              tabs: const [
-                Tab(text: "AGENTS"),
-                Tab(text: "MAPS"),
-                Tab(text: "WEAPONS"),
-                Tab(text: "GEARS"),
-              ],
             ),
           Expanded(
             child: TabBarView(
@@ -129,7 +139,10 @@ class Tabs extends StatelessWidget {
             onPressed: () => onSeeAllChanged(true),
             child: const Text(
               "SEE ALL",
-              style: TextStyle(color: Colors.white, letterSpacing: 1.6),
+              style: TextStyle(
+                  color: Color.fromRGBO(31, 35, 38, 1),
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.6),
             ),
           ),
       ],
