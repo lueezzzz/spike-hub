@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tab_indicator_styler/flutter_tab_indicator_styler.dart';
 import 'package:spike_hub/models/agents.dart';
 import 'package:spike_hub/models/gears.dart';
 import 'package:spike_hub/models/maps.dart';
@@ -14,158 +15,126 @@ import 'package:spike_hub/widgets/gear-widgets/gear_card.dart';
 import 'package:spike_hub/widgets/map-widgets/map_card.dart';
 import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_card.dart';
 
-class Tabs extends StatefulWidget {
-  const Tabs({super.key});
+class Tabs extends StatelessWidget {
+  final bool showAll;
+  final void Function(bool) onSeeAllChanged;
 
-  @override
-  State<Tabs> createState() => _TabsState();
-}
-
-class _TabsState extends State<Tabs> {
-  bool showAll = false;
-  late Future<Iterable<Agent>> fetchedAgents;
-
-  @override
-  void initState() {
-    super.initState();
-    fetchedAgents = AgentsApi().getAgents();
-  }
+  const Tabs({
+    super.key,
+    required this.showAll,
+    required this.onSeeAllChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
-      child: Scaffold(
-        appBar: AppBar(
-          bottom: const TabBar(
-            tabs: [
-              Tab(
-                child: Text("AGENTS", style: TextStyle(color: Colors.black)),
+      child: Column(
+        children: [
+          if (!showAll)
+            TabBar(
+              labelStyle: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.2,
               ),
-              Tab(
-                child: Text("MAPS", style: TextStyle(color: Colors.black)),
+              indicator: MaterialIndicator(
+                color: Colors.redAccent,
+                tabPosition: TabPosition.bottom,
+                topLeftRadius: 25.0,
+                topRightRadius: 25.0,
               ),
-              Tab(
-                child: Text("WEAPONS", style: TextStyle(color: Colors.black)),
-              ),
-              Tab(
-                child: Text("GEARS", style: TextStyle(color: Colors.black)),
-              ),
-            ],
-          ),
-        ),
-        body: TabBarView(children: [
-          Column(
-            children: [
-              if (showAll)
-                CollapseItems(
-                  onCollapse: () {
-                    setState(() {
-                      showAll = false;
-                    });
-                  },
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.grey,
+              tabs: const [
+                Tab(text: "AGENTS"),
+                Tab(text: "MAPS"),
+                Tab(text: "WEAPONS"),
+                Tab(text: "GEARS"),
+              ],
+            ),
+          Expanded(
+            child: TabBarView(
+
+              children: [
+                
+                _buildTabContent<Agent>(
+                  context: context,
                   title: "AGENTS",
-                ),
-              Expanded(
-                child: FutureGridview<Agent>(
                   future:
                       AgentsApi().getAgents().then((agents) => agents.toList()),
-                  itemBuilder: (context, agent, index) =>
-                      AgentCard(agent: agent, index: index),
-                  showAll: showAll,
-                  limit: 8,
+                  itemBuilder: (context, item, index) =>
+                      AgentCard(agent: item, index: index),
+                  limit: showAll
+                      ? 999
+                      : 8, // Display all when showAll is true, else 8
                 ),
-              ),
-              if (!showAll)
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      showAll = true;
-                    });
-                  },
-                  child: const Text(
-                    "SEE ALL",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-            ],
-          ),
-          Column(
-            children: [
-              if (showAll)
-                CollapseItems(
-                  onCollapse: () {
-                    setState(() {
-                      showAll = false;
-                    });
-                  },
+                _buildTabContent<Maps>(
+                  context: context,
                   title: "MAPS",
-                ),
-              Expanded(
-                child: FutureGridview<Maps>(
                   future: MapApi().getMaps().then((maps) => maps.toList()),
-                  itemBuilder: (context, map, index) =>
-                      MapCard(map: map, index: index),
-                  showAll: showAll,
-                  limit: 8,
+                  itemBuilder: (context, item, index) =>
+                      MapCard(map: item, index: index),
+                  limit: showAll ? 999 : 4, // Display 4 maps when not expanded
                 ),
-              ),
-              if (!showAll)
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      showAll = true;
-                    });
-                  },
-                  child: const Text(
-                    "SEE ALL",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-            ],
-          ),
-          Column(
-            children: [
-              if (showAll)
-                CollapseItems(
-                  onCollapse: () {
-                    setState(() {
-                      showAll = false;
-                    });
-                  },
+                _buildTabContent<Weapon>(
+                  context: context,
                   title: "WEAPONS",
-                ),
-              Expanded(
-                child: FutureGridview<Weapon>(
                   future: WeaponsApi()
                       .getWeapons()
                       .then((weapons) => weapons.toList()),
-                  itemBuilder: (context, weapon, index) =>
-                      WeaponCard(weapon: weapon, index: index),
-                  showAll: showAll,
-                  limit: 8,
+                  itemBuilder: (context, item, index) =>
+                      WeaponCard(weapon: item, index: index),
+                  limit:
+                      showAll ? 999 : 6, // Display 6 weapons when not expanded
                 ),
-              ),
-              if (!showAll)
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      showAll = true;
-                    });
-                  },
-                  child: const Text(
-                    "SEE ALL",
-                    style: TextStyle(color: Colors.black),
-                  ),
+                _buildTabContent<Gear>(
+                  context: context,
+                  title: "GEARS",
+                  future: GearsApi().getGears().then((gears) => gears.toList()),
+                  itemBuilder: (context, item, index) =>
+                      GearCard(gear: item, index: index),
+                  limit: showAll ? 999 : 5, // Display 5 gears when not expanded
                 ),
-            ],
+              ],
+            ),
           ),
-          FutureGridview<Gear>(
-              future: GearsApi().getGears().then((gears) => gears.toList()),
-              itemBuilder: (context, gear, index) =>
-                  GearCard(gear: gear, index: index))
-        ]),
+        ],
       ),
+    );
+  }
+
+  Widget _buildTabContent<T>({
+    required BuildContext context,
+    required String title,
+    required Future<List<T>> future,
+    required Widget Function(BuildContext, T, int) itemBuilder,
+    required int limit, // Accept limit parameter here
+  }) {
+    return Column(
+      children: [
+        if (showAll)
+          CollapseItems(
+            onCollapse: () => onSeeAllChanged(false),
+            title: title,
+          ),
+        Expanded(
+          child: FutureGridview<T>(
+            future: future,
+            itemBuilder: itemBuilder,
+            showAll: showAll,
+            limit: limit, // Pass the limit dynamically
+          ),
+        ),
+        if (!showAll)
+          TextButton(
+            onPressed: () => onSeeAllChanged(true),
+            child: const Text(
+              "SEE ALL",
+              style: TextStyle(color: Colors.white, letterSpacing: 1.6 ),
+            ),
+          ),
+      ],
     );
   }
 }

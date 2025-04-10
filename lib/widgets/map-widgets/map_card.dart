@@ -27,8 +27,7 @@ class MapCard extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   image: DecorationImage(
-                      image:
-                          CachedNetworkImageProvider(map.listViewIconTall!))),
+                      image: CachedNetworkImageProvider(map.listViewIcon!))),
             )
           ],
         ),
