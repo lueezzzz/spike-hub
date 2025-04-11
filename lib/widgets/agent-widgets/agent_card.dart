@@ -4,10 +4,9 @@ import 'package:spike_hub/widgets/agent-widgets/agent_details.dart';
 import '../../models/agents.dart';
 
 class AgentCard extends StatelessWidget {
-  AgentCard({required this.agent, required this.index, super.key});
-
-  Agent agent;
-  int index;
+  final Agent agent;
+  final int index;
+  const AgentCard({required this.agent, required this.index, super.key});
 
   @override
   Widget build(BuildContext context) {

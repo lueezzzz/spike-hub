@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:spike_hub/models/weapons.dart';
 
 class WeaponCard extends StatelessWidget {
-  WeaponCard({Key? key, required this.weapon, required this.index})
-      : super(key: key);
-
-  Weapon weapon;
-  int index;
+  final Weapon weapon;
+  final int index;
+  
+  const WeaponCard({required this.weapon, required this.index, super.key});
 
   @override
   Widget build(BuildContext context) {

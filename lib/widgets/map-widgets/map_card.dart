@@ -4,10 +4,10 @@ import 'package:spike_hub/models/maps.dart';
 import 'package:spike_hub/widgets/map-widgets/map_details.dart';
 
 class MapCard extends StatelessWidget {
-  const MapCard({required this.map, required this.index, super.key});
-
   final Maps map;
   final int index;
+
+  const MapCard({required this.map, required this.index, super.key});
 
   @override
   Widget build(BuildContext context) {

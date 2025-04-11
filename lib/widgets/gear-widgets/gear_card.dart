@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:spike_hub/models/gears.dart';
 
 class GearCard extends StatelessWidget {
-  GearCard({Key? key, required this.gear, required this.index})
-      : super(key: key);
-
-  Gear gear;
-  int index;
+  final Gear gear;
+  final int index;
+  const GearCard({required this.gear, required this.index, super.key});
 
   @override
   Widget build(BuildContext context) {

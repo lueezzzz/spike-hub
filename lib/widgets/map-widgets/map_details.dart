@@ -6,7 +6,7 @@ class MapDetails extends StatefulWidget {
   final Maps maps;
   final ScrollController scrollController;
 
-  MapDetails({required this.maps, required this.scrollController, super.key});
+  const MapDetails({required this.maps, required this.scrollController, super.key});
 
   @override
   State<MapDetails> createState() => _MapDetailsState();

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../../models/agents.dart';
 
 class AgentDetails extends StatefulWidget {
-  Agent agent;
+  final Agent agent;
 
-  AgentDetails({
+  const AgentDetails({
     required this.agent,
     super.key,
   });
