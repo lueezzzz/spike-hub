@@ -41,6 +41,7 @@ class Tabs extends StatelessWidget {
                 ),
               ),
               child: TabBar(
+                physics: const NeverScrollableScrollPhysics(),
                 labelStyle: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -65,6 +66,7 @@ class Tabs extends StatelessWidget {
             ),
           Expanded(
             child: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
               children: [
                 _buildTabContent<Agent>(
                   context: context,
