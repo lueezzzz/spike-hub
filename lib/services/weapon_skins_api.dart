@@ -7,7 +7,7 @@ class WeaponsApi extends ValorantApi {
     Iterable<WeaponSkin> weaponSkins = [];
 
     try {
-      Response response = await super.dio.get("${super.url}v1/weapons");
+      Response response = await super.dio.get("${super.url}v1/weapon/skins");
       List weaponSkinData = response.data['data'];
       weaponSkins = weaponSkinData.map((weaponSkin) => WeaponSkin.fromJson(weaponSkin));
     } on DioException catch (err) {
