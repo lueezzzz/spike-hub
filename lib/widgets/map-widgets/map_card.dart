@@ -69,7 +69,7 @@ class MapCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: CachedNetworkImageProvider(map.listViewIcon!),
-                      fit: BoxFit.fill),
+                      fit: BoxFit.cover),
                 ),
               ),
             ),

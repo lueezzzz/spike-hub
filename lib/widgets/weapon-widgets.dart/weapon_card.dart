@@ -18,7 +18,7 @@ class WeaponCard extends StatelessWidget {
       //   )
       // },
       child: SizedBox(
-        width: 120,
+        width: 100,
         height: 140,
         child: Stack(
           alignment: Alignment.center,
@@ -63,8 +63,8 @@ class WeaponCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 15,
-              left: 20,
+              bottom: 20,
+              left: 25,
               child: Text(
                 weapon.displayName!,
                 style: TextStyle(

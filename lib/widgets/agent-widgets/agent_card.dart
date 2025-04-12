@@ -21,19 +21,6 @@ class AgentCard extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Positioned(
-                top: 110,
-                child: Container(
-                  width: 100,
-                  child: Text(
-                    agent.displayName!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Color.fromRGBO(15, 25, 35, 1),
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold),
-                  ),
-                )),
-            Positioned(
                 top: 5,
                 left: 5,
                 child: Material(
@@ -60,12 +47,27 @@ class AgentCard extends StatelessWidget {
                 ),
               ),
               child: Hero(
-                  tag: agent,
-                  child: CachedNetworkImage(
-                    imageUrl: agent.displayIconSmall!,
-                    height: 100,
-                  )),
-            )
+                tag: agent,
+                child: CachedNetworkImage(
+                  imageUrl: agent.displayIconSmall!,
+                  height: 100,
+                ),
+              ),
+            ),
+            Positioned(
+              top: 110,
+              child: SizedBox(
+                width: 100,
+                child: Text(
+                  agent.displayName!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Color.fromRGBO(15, 25, 35, 1),
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
           ],
         ),
       ),
