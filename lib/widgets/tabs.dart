@@ -15,7 +15,7 @@ import 'package:spike_hub/widgets/gear-widgets/gear_card.dart';
 import 'package:spike_hub/widgets/map-widgets/map_card.dart';
 import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_card.dart';
 
-class Tabs extends StatelessWidget {
+class Tabs extends StatefulWidget {
   final bool showAll;
   final void Function(bool) onSeeAllChanged;
   final TabController controller;
@@ -28,10 +28,30 @@ class Tabs extends StatelessWidget {
   });
 
   @override
+  State<Tabs> createState() => _TabsState();
+}
+
+class _TabsState extends State<Tabs> {
+  late Future<List<Agent>> cachedAgents;
+  late Future<List<Maps>> cachedMaps;
+  late Future<List<Weapon>> cachedWeapons;
+  late Future<List<Gear>> cachedGears;
+
+  @override
+  void initState() {
+    super.initState();
+    cachedAgents = AgentsApi().getAgents().then((agents) => agents.toList());
+    cachedMaps = MapApi().getMaps().then((maps) => maps.toList());
+    cachedWeapons =
+        WeaponsApi().getWeapons().then((weapons) => weapons.toList());
+    cachedGears = GearsApi().getGears().then((gears) => gears.toList());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (!showAll)
+        if (!widget.showAll)
           Material(
             color: Color.fromRGBO(31, 35, 38, 1),
             shape: BeveledRectangleBorder(
@@ -41,8 +61,8 @@ class Tabs extends StatelessWidget {
               ),
             ),
             child: TabBar(
-              controller: controller,
-              physics: const NeverScrollableScrollPhysics(),
+              controller: widget.controller,
+              // physics: const NeverScrollableScrollPhysics(),
               labelStyle: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
@@ -67,52 +87,49 @@ class Tabs extends StatelessWidget {
           ),
         Expanded(
           child: TabBarView(
-            controller: controller,
+            controller: widget.controller,
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              _buildTabContent<Agent>(
+              buildTabContent<Agent>(
                 context: context,
                 title: "AGENTS",
-                future:
-                    AgentsApi().getAgents().then((agents) => agents.toList()),
+                future: cachedAgents,
                 itemBuilder: (context, item, index) =>
                     AgentCard(agent: item, index: index),
-                limit: showAll ? 999 : 6,
+                limit: widget.showAll ? 999 : 6,
                 axisCount: 3,
                 axisSpacing: 30,
                 mainSpacing: 40,
               ),
-              _buildTabContent<Maps>(
+              buildTabContent<Maps>(
                 context: context,
                 title: "MAPS",
-                future: MapApi().getMaps().then((maps) => maps.toList()),
+                future: cachedMaps,
                 itemBuilder: (context, item, index) =>
                     MapCard(map: item, index: index),
-                limit: showAll ? 999 : 4,
+                limit: widget.showAll ? 999 : 4,
                 axisCount: 1,
                 axisSpacing: 0,
                 mainSpacing: 25,
               ),
-              _buildTabContent<Weapon>(
+              buildTabContent<Weapon>(
                 context: context,
                 title: "WEAPONS",
-                future: WeaponsApi()
-                    .getWeapons()
-                    .then((weapons) => weapons.toList()),
+                future: cachedWeapons,
                 itemBuilder: (context, item, index) =>
                     WeaponCard(weapon: item, index: index),
-                limit: showAll ? 999 : 6,
+                limit: widget.showAll ? 999 : 6,
                 axisCount: 1,
                 axisSpacing: 0,
                 mainSpacing: 25,
               ),
-              _buildTabContent<Gear>(
+              buildTabContent<Gear>(
                 context: context,
                 title: "GEARS",
-                future: GearsApi().getGears().then((gears) => gears.toList()),
+                future: cachedGears,
                 itemBuilder: (context, item, index) =>
                     GearCard(gear: item, index: index),
-                limit: showAll ? 999 : 5,
+                limit: widget.showAll ? 999 : 5,
                 axisCount: 3,
                 axisSpacing: 30,
                 mainSpacing: 40,
@@ -124,7 +141,7 @@ class Tabs extends StatelessWidget {
     );
   }
 
-  Widget _buildTabContent<T>({
+  Widget buildTabContent<T>({
     required BuildContext context,
     required String title,
     required Future<List<T>> future,
@@ -136,25 +153,25 @@ class Tabs extends StatelessWidget {
   }) {
     return Column(
       children: [
-        if (showAll)
+        if (widget.showAll)
           CollapseItems(
-            onCollapse: () => onSeeAllChanged(false),
+            onCollapse: () => widget.onSeeAllChanged(false),
             title: title,
           ),
         Expanded(
           child: FutureBuildView<T>(
             future: future,
             itemBuilder: itemBuilder,
-            showAll: showAll,
+            showAll: widget.showAll,
             limit: limit,
             crossAxisCount: axisCount,
             crossAxisSpacing: axisSpacing,
             mainAxisSpacing: mainSpacing,
           ),
         ),
-        if (!showAll)
+        if (!widget.showAll)
           TextButton(
-            onPressed: () => onSeeAllChanged(true),
+            onPressed: () => widget.onSeeAllChanged(true),
             child: const Text(
               "SEE ALL",
               style: TextStyle(
