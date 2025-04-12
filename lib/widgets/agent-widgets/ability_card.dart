@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:spike_hub/widgets/agent-widgets/ability_details.dart";
 
 import "../../models/agents.dart";
 
@@ -10,6 +11,25 @@ class AbilityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          builder: (context) => DraggableScrollableSheet(
+            initialChildSize: 0.4,
+            minChildSize: 0.3,
+            maxChildSize: 0.8,
+            expand: false,
+            builder: (context, scrollController) {
+              return AbilityDetails(
+                ability: ability,
+                scrollController: scrollController,
+              );
+            },
+          ),
+        );
+      },
       child: Column(
         children: [
           Container(

@@ -66,7 +66,7 @@ class WeaponCard extends StatelessWidget {
               bottom: 15,
               left: 20,
               child: Text(
-                'TEXT',
+                weapon.displayName!,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
