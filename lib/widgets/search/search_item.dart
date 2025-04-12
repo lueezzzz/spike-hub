@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:spike_hub/pages/ability_details_page.dart';
 import 'package:spike_hub/widgets/agent-widgets/agent_details.dart';
 import '../../services/agents_api.dart';
 import '../../services/map_api.dart';
@@ -64,7 +65,7 @@ class _SearchItem extends State<SearchItem> {
                 name: ability.displayName!,
                 type: 'Ability',
                 iconUrl: ability.displayIcon ?? '',
-                data: agent,
+                data: ability,
                 description: ability.description ?? '',
                 parentName: agent.displayName,
                 subtype: ability.slot ?? '',
@@ -127,7 +128,9 @@ class _SearchItem extends State<SearchItem> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => AgentDetails(agent: item.data)));
+                builder: (context) => AbilityDetailsPage(
+                      ability: item.data,
+                    )));
         break;
       case 'Weapon':
         Navigator.pushNamed(context, '/weapon_detail', arguments: item.data);
