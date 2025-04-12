@@ -39,20 +39,20 @@ class AbilityCard extends StatelessWidget {
               height: 48,
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                color: Colors.white10,
+                color: Color.fromRGBO(248, 248, 248, 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Image.network(
                 ability.displayIcon ?? '',
                 fit: BoxFit.contain,
-                color: Colors.white,
+                color: Color.fromRGBO(248, 248, 248, 1),
               ),
             ),
             const SizedBox(height: 4),
             Text(
               ability.displayName ?? '',
               style: const TextStyle(
-                color: Colors.white60,
+                color: Color.fromRGBO(248, 248, 248, 1),
                 fontSize: 12,
               ),
             ),

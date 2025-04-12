@@ -17,22 +17,21 @@ class WeaponHeader extends StatelessWidget {
           Text(
             weapon.displayName!.toUpperCase(),
             style: const TextStyle(
-              color: Colors.white,
+              color: Color.fromRGBO(248, 248, 248, 1),
               fontSize: 32,
               fontWeight: FontWeight.bold,
-              letterSpacing: 1.5,
             ),
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: Colors.redAccent,
+              color: Color.fromRGBO(255, 70, 86, 1),
               borderRadius: BorderRadius.circular(4),
             ),
             child: Text(
               weapon.shopData!.cost!.toString(),
               style: const TextStyle(
-                color: Colors.white,
+                color: Color.fromRGBO(248, 248, 248, 1),
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),

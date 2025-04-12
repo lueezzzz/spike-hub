@@ -15,14 +15,18 @@ class CollapseItems extends StatelessWidget {
         onTap: onCollapse,
         child: Row(
           children: [
-            const Icon(Icons.arrow_left, color: Colors.white), // or arrow_back
+            const Icon(
+              Icons.arrow_left,
+              color: Color.fromRGBO(248, 248, 248, 1),
+            ), // or arrow_back
             const SizedBox(width: 4),
             Text(
               title,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.white, // You can style it later
+                color:
+                    Color.fromRGBO(248, 248, 248, 1), // You can style it later
               ),
             ),
           ],

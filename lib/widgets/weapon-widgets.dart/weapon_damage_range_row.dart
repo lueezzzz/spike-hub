@@ -35,7 +35,7 @@ class DamageItem extends StatelessWidget {
     return Text(
       "$label: ${value is double ? value.toStringAsFixed(2) : value}",
       style: const TextStyle(
-        color: Colors.white,
+        color: Color.fromRGBO(248, 248, 248, 1),
         fontSize: 14,
       ),
     );

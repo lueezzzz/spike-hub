@@ -30,7 +30,7 @@ class _AbilityDetailsState extends State<AbilityDetails> {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color.fromRGBO(248, 248, 248, 1),
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
@@ -49,7 +49,7 @@ class _AbilityDetailsState extends State<AbilityDetails> {
                     Container(
                       width: double.infinity,
                       height: 160,
-                      color: Colors.black,
+                      color: Color.fromRGBO(15, 25, 35, 1),
                       alignment: Alignment.center,
                       child: Image.network(
                         widget.ability.displayIcon ?? '',
@@ -60,7 +60,7 @@ class _AbilityDetailsState extends State<AbilityDetails> {
                     ),
 
                     Container(
-                      color: Colors.white,
+                      color: Color.fromRGBO(248, 248, 248, 1),
                       padding: const EdgeInsets.all(16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +69,7 @@ class _AbilityDetailsState extends State<AbilityDetails> {
                             widget.ability.displayName?.toUpperCase() ??
                                 "ABILITY",
                             style: const TextStyle(
-                              color: Colors.black,
+                              color: Color.fromRGBO(31, 35, 38, 1),
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 1.2,
@@ -80,7 +80,7 @@ class _AbilityDetailsState extends State<AbilityDetails> {
                             widget.ability.description ??
                                 "No description available.",
                             style: const TextStyle(
-                              color: Colors.black87,
+                              color: Color.fromRGBO(31, 35, 38, 1),
                               fontSize: 14,
                               height: 1.5,
                             ),
