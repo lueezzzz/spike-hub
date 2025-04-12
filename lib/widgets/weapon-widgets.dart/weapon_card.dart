@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:spike_hub/models/weapons.dart';
+import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_details.dart';
 
 class WeaponCard extends StatelessWidget {
   final Weapon weapon;
@@ -11,12 +12,25 @@ class WeaponCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => {
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(builder: (context) => const AgentDetails())
-      //   )
-      // },
+      onTap: () {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          builder: (context) => DraggableScrollableSheet(
+            initialChildSize: 0.5,
+            minChildSize: 0.3,
+            maxChildSize: 0.9,
+            expand: false,
+            builder: (context, scrollController) {
+              return WeaponDetails(
+                weapon: weapon,
+                scrollController: scrollController,
+              );
+            },
+          ),
+        );
+      },
       child: SizedBox(
         width: 100,
         height: 140,

@@ -6,7 +6,8 @@ class MapDetails extends StatefulWidget {
   final Maps maps;
   final ScrollController scrollController;
 
-  const MapDetails({required this.maps, required this.scrollController, super.key});
+  const MapDetails(
+      {required this.maps, required this.scrollController, super.key});
 
   @override
   State<MapDetails> createState() => _MapDetailsState();
@@ -16,22 +17,20 @@ class _MapDetailsState extends State<MapDetails> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-      ),
+      color: Colors.transparent,
       child: SingleChildScrollView(
         controller: widget.scrollController,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 16),
+              margin: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color(0xFF0F1923),
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.2),
+                    color: Colors.black.withValues(alpha: 0.5),
                     blurRadius: 10,
                     spreadRadius: 1,
                   ),
@@ -42,7 +41,6 @@ class _MapDetailsState extends State<MapDetails> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Map image
                     Container(
                       width: double.infinity,
                       height: 160,
@@ -54,27 +52,26 @@ class _MapDetailsState extends State<MapDetails> {
                         ),
                       ),
                     ),
-
                     Container(
-                      color: Colors.white,
-                      padding: EdgeInsets.all(16),
+                      color: const Color(0xFF0F1923),
+                      padding: const EdgeInsets.all(16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             widget.maps.displayName!.toUpperCase(),
-                            style: TextStyle(
-                              color: Colors.black,
+                            style: const TextStyle(
+                              color: Colors.white,
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 1.2,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text(
                             getMapDescription(widget.maps.displayName!),
-                            style: TextStyle(
-                              color: Colors.black87,
+                            style: const TextStyle(
+                              color: Colors.white70,
                               fontSize: 14,
                               height: 1.5,
                             ),
@@ -86,7 +83,7 @@ class _MapDetailsState extends State<MapDetails> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),

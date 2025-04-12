@@ -54,6 +54,7 @@ class Stats {
   dynamic reloadTimeSeconds;
   dynamic firstBulletAccuracy;
   String? altFireType;
+  String? wallPenetration;
   List<DamageRanges>? damageRanges;
 
   Stats(
@@ -62,6 +63,7 @@ class Stats {
       this.reloadTimeSeconds,
       this.firstBulletAccuracy,
       this.altFireType,
+      this.wallPenetration,
       this.damageRanges});
 
   Stats.fromJson(Map<String, dynamic> json) {
@@ -70,6 +72,7 @@ class Stats {
     reloadTimeSeconds = json['reloadTimeSeconds'];
     firstBulletAccuracy = json['firstBulletAccuracy'];
     altFireType = json['altFireType'];
+    wallPenetration = json['wallPenetration'];
     if (json['damageRanges'] != null) {
       damageRanges = <DamageRanges>[];
       json['damageRanges']
@@ -84,6 +87,10 @@ class Stats {
     data['reloadTimeSeconds'] = reloadTimeSeconds;
     data['firstBulletAccuracy'] = firstBulletAccuracy;
     data['altFireType'] = altFireType;
+    data['wallPenetration'] = wallPenetration;
+    if (damageRanges != null) {
+      data['damageRanges'] = damageRanges!.map((v) => v.toJson()).toList();
+    }
 
     return data;
   }
