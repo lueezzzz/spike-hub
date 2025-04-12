@@ -33,7 +33,7 @@ class MapCard extends StatelessWidget {
       },
       child: SizedBox(
         width: 150,
-        height: 120,
+        height: 100,
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -52,7 +52,7 @@ class MapCard extends StatelessWidget {
                     child: Container(
                       color: Color.fromRGBO(15, 25, 35, 1),
                       width: 350,
-                      height: 100,
+                      height: 90,
                     ))),
             Material(
               clipBehavior: Clip.antiAlias,
@@ -65,7 +65,7 @@ class MapCard extends StatelessWidget {
               ),
               child: Container(
                 width: 350,
-                height: 100,
+                height: 90,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: CachedNetworkImageProvider(map.listViewIcon!),
