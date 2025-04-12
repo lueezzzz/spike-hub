@@ -67,7 +67,7 @@ class GearCard extends StatelessWidget {
               child: SizedBox(
                 width: 100,
                 child: Text(
-                  'My text',
+                  gear.displayName!,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Color.fromRGBO(15, 25, 35, 1),
