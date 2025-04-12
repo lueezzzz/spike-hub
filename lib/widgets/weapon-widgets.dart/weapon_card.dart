@@ -41,10 +41,9 @@ class WeaponCard extends StatelessWidget {
                 top: 15,
                 left: 15,
                 child: Material(
-                  color: Color.fromRGBO(255, 70, 86, 1),
+                  clipBehavior: Clip.antiAlias,
+                  color: Color.fromRGBO(15, 25, 35, 0.5),
                   shape: BeveledRectangleBorder(
-                    side: BorderSide(
-                        color: Color.fromRGBO(15, 25, 35, 1), width: 0.7),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15.0),
                     ),
@@ -80,7 +79,7 @@ class WeaponCard extends StatelessWidget {
               bottom: 20,
               left: 25,
               child: Text(
-                weapon.displayName!,
+                weapon.displayName!.toUpperCase(),
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
