@@ -1,7 +1,6 @@
-import "package:flutter/material.dart";
-import "package:spike_hub/widgets/agent-widgets/ability_details.dart";
-
-import "../../models/agents.dart";
+import 'package:flutter/material.dart';
+import '../../models/agents.dart';
+import 'ability_details.dart';
 
 class AbilityCard extends StatelessWidget {
   final Ability ability;
@@ -10,51 +9,55 @@ class AbilityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          backgroundColor: Colors.transparent,
-          builder: (context) => DraggableScrollableSheet(
-            initialChildSize: 0.4,
-            minChildSize: 0.3,
-            maxChildSize: 0.8,
-            expand: false,
-            builder: (context, scrollController) {
-              return AbilityDetails(
-                ability: ability,
-                scrollController: scrollController,
-              );
-            },
-          ),
-        );
-      },
-      child: Column(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            padding: const EdgeInsets.all(6),
-            decoration: BoxDecoration(
-              color: Colors.white10,
-              borderRadius: BorderRadius.circular(12),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            builder: (context) => DraggableScrollableSheet(
+              initialChildSize: 0.4,
+              minChildSize: 0.3,
+              maxChildSize: 0.8,
+              expand: false,
+              builder: (context, scrollController) {
+                return AbilityDetails(
+                  ability: ability,
+                  scrollController: scrollController,
+                );
+              },
             ),
-            child: Image.network(
-              ability.displayIcon ?? '',
-              fit: BoxFit.contain,
-              color: Colors.white,
+          );
+        },
+        child: Column(
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                color: Colors.white10,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Image.network(
+                ability.displayIcon ?? '',
+                fit: BoxFit.contain,
+                color: Colors.white,
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            ability.displayName ?? '',
-            style: const TextStyle(
-              color: Colors.white60,
-              fontSize: 12,
+            const SizedBox(height: 4),
+            Text(
+              ability.displayName ?? '',
+              style: const TextStyle(
+                color: Colors.white60,
+                fontSize: 12,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
