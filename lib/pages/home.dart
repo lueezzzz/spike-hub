@@ -77,7 +77,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               ),
             ),
           ),
-           if (isSideMenuOpen)
+          if (isSideMenuOpen)
             Positioned.fill(
               child: GestureDetector(
                 onTap: () {
