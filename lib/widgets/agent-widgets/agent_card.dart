@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:spike_hub/models/agents.dart';
 import 'package:spike_hub/widgets/agent-widgets/agent_details.dart';
-import '../../models/agents.dart';
 
 class AgentCard extends StatelessWidget {
   final Agent agent;
@@ -21,27 +21,25 @@ class AgentCard extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Positioned(
-                top: 5,
-                left: 5,
-                child: Material(
-                  color: Color.fromRGBO(255, 70, 86, 1),
-                  shape: BeveledRectangleBorder(
-                    side: BorderSide(
-                        color: Color.fromRGBO(15, 25, 35, 1), width: 0.7),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15.0),
-                    ),
+              top: 5,
+              left: 5,
+              child: Material(
+                clipBehavior: Clip.antiAlias,
+                color: Color.fromRGBO(15, 25, 35, 0.5),
+                shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15.0),
                   ),
-                  child: SizedBox(
-                    width: 100,
-                    height: 100,
-                  ),
-                )),
+                ),
+                child: SizedBox(
+                  width: 100,
+                  height: 100,
+                ),
+              ),
+            ),
             Material(
               color: Color.fromRGBO(15, 25, 35, 1),
               shape: BeveledRectangleBorder(
-                side:
-                    BorderSide(color: Color.fromRGBO(15, 25, 35, 1), width: 1),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(15.0),
                 ),

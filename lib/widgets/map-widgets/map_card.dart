@@ -38,27 +38,25 @@ class MapCard extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             Positioned(
-                top: 15,
-                left: 10,
-                child: Material(
-                    clipBehavior: Clip.antiAlias,
-                    shape: BeveledRectangleBorder(
-                      side: BorderSide(
-                          color: Color.fromRGBO(15, 25, 35, 1), width: 1),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15.0),
-                      ),
-                    ),
-                    child: Container(
-                      color: Color.fromRGBO(15, 25, 35, 1),
-                      width: 350,
-                      height: 90,
-                    ))),
+              top: 15,
+              left: 10,
+              child: Material(
+                clipBehavior: Clip.antiAlias,
+                color: Color.fromRGBO(15, 25, 35, 0.5),
+                shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15.0),
+                  ),
+                ),
+                child: Container(
+                  width: 350,
+                  height: 90,
+                ),
+              ),
+            ),
             Material(
               clipBehavior: Clip.antiAlias,
               shape: BeveledRectangleBorder(
-                side:
-                    BorderSide(color: Color.fromRGBO(15, 25, 35, 1), width: 1),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(15.0),
                 ),
