@@ -9,10 +9,23 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
   bool showAll = false;
   bool isSideMenuOpen = false;
   String activeTab = 'HOME';
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 4, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +68,7 @@ class _HomeState extends State<Home> {
                           showAll = value;
                         });
                       },
+                      controller: _tabController,
                     ),
                   ),
                 ],
@@ -128,17 +142,20 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            IconButton(
-              icon: Icon(
-                Icons.menu,
-                color: Color.fromRGBO(248, 248, 248, 1),
-                size: 30,
+            Transform.translate(
+              offset: Offset(0, -7),
+              child: IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  color: Color.fromRGBO(248, 248, 248, 1),
+                  size: 30,
+                ),
+                onPressed: () {
+                  setState(() {
+                    isSideMenuOpen = !isSideMenuOpen;
+                  });
+                },
               ),
-              onPressed: () {
-                setState(() {
-                  isSideMenuOpen = true;
-                });
-              },
             ),
           ],
         ),
@@ -154,6 +171,26 @@ class _HomeState extends State<Home> {
         setState(() {
           activeTab = title;
           isSideMenuOpen = false;
+
+          if (title == 'HOME') {
+            showAll = false;
+          } else {
+            showAll = true;
+            switch (title) {
+              case 'AGENTS':
+                _tabController.animateTo(0);
+                break;
+              case 'MAPS':
+                _tabController.animateTo(1);
+                break;
+              case 'WEAPONS':
+                _tabController.animateTo(2);
+                break;
+              case 'GEARS':
+                _tabController.animateTo(3);
+                break;
+            }
+          }
         });
       },
       child: Container(

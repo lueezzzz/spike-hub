@@ -18,108 +18,109 @@ import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_card.dart';
 class Tabs extends StatelessWidget {
   final bool showAll;
   final void Function(bool) onSeeAllChanged;
+  final TabController controller;
 
   const Tabs({
     super.key,
     required this.showAll,
     required this.onSeeAllChanged,
+    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 4,
-      child: Column(
-        children: [
-          if (!showAll)
-            Material(
-              color: Color.fromRGBO(31, 35, 38, 1),
-              shape: BeveledRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10.0),
-                  bottomRight: Radius.circular(10.0),
-                ),
-              ),
-              child: TabBar(
-                physics: const NeverScrollableScrollPhysics(),
-                labelStyle: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                ),
-                indicator: MaterialIndicator(
-                  color: Color.fromRGBO(248, 248, 248, 1),
-                  tabPosition: TabPosition.bottom,
-                  topLeftRadius: 25.0,
-                  topRightRadius: 25.0,
-                ),
-                labelColor: Color.fromRGBO(248, 248, 248, 1),
-                unselectedLabelColor: Color.fromRGBO(248, 248, 248, 0.3),
-                dividerColor: Colors.transparent,
-                tabs: const [
-                  Tab(text: "AGENTS"),
-                  Tab(text: "MAPS"),
-                  Tab(text: "WEAPONS"),
-                  Tab(text: "GEARS"),
-                ],
+    return Column(
+      children: [
+        if (!showAll)
+          Material(
+            color: Color.fromRGBO(31, 35, 38, 1),
+            shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(10.0),
+                bottomRight: Radius.circular(10.0),
               ),
             ),
-          Expanded(
-            child: TabBarView(
+            child: TabBar(
+              controller: controller,
               physics: const NeverScrollableScrollPhysics(),
-              children: [
-                _buildTabContent<Agent>(
-                  context: context,
-                  title: "AGENTS",
-                  future:
-                      AgentsApi().getAgents().then((agents) => agents.toList()),
-                  itemBuilder: (context, item, index) =>
-                      AgentCard(agent: item, index: index),
-                  limit: showAll ? 999 : 6,
-                  axisCount: 3,
-                  axisSpacing: 30,
-                  mainSpacing: 40,
-                ),
-                _buildTabContent<Maps>(
-                  context: context,
-                  title: "MAPS",
-                  future: MapApi().getMaps().then((maps) => maps.toList()),
-                  itemBuilder: (context, item, index) =>
-                      MapCard(map: item, index: index),
-                  limit: showAll ? 999 : 4,
-                  axisCount: 1,
-                  axisSpacing: 0,
-                  mainSpacing: 25,
-                ),
-                _buildTabContent<Weapon>(
-                  context: context,
-                  title: "WEAPONS",
-                  future: WeaponsApi()
-                      .getWeapons()
-                      .then((weapons) => weapons.toList()),
-                  itemBuilder: (context, item, index) =>
-                      WeaponCard(weapon: item, index: index),
-                  limit: showAll ? 999 : 6,
-                  axisCount: 1,
-                  axisSpacing: 0,
-                  mainSpacing: 25,
-                ),
-                _buildTabContent<Gear>(
-                  context: context,
-                  title: "GEARS",
-                  future: GearsApi().getGears().then((gears) => gears.toList()),
-                  itemBuilder: (context, item, index) =>
-                      GearCard(gear: item, index: index),
-                  limit: showAll ? 999 : 5,
-                  axisCount: 3,
-                  axisSpacing: 30,
-                  mainSpacing: 40,
-                ),
+              labelStyle: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.2,
+              ),
+              indicator: MaterialIndicator(
+                color: Color.fromRGBO(248, 248, 248, 1),
+                tabPosition: TabPosition.bottom,
+                topLeftRadius: 25.0,
+                topRightRadius: 25.0,
+              ),
+              labelColor: Color.fromRGBO(248, 248, 248, 1),
+              unselectedLabelColor: Color.fromRGBO(248, 248, 248, 0.3),
+              dividerColor: Colors.transparent,
+              tabs: const [
+                Tab(text: "AGENTS"),
+                Tab(text: "MAPS"),
+                Tab(text: "WEAPONS"),
+                Tab(text: "GEARS"),
               ],
             ),
           ),
-        ],
-      ),
+        Expanded(
+          child: TabBarView(
+            controller: controller,
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              _buildTabContent<Agent>(
+                context: context,
+                title: "AGENTS",
+                future:
+                    AgentsApi().getAgents().then((agents) => agents.toList()),
+                itemBuilder: (context, item, index) =>
+                    AgentCard(agent: item, index: index),
+                limit: showAll ? 999 : 6,
+                axisCount: 3,
+                axisSpacing: 30,
+                mainSpacing: 40,
+              ),
+              _buildTabContent<Maps>(
+                context: context,
+                title: "MAPS",
+                future: MapApi().getMaps().then((maps) => maps.toList()),
+                itemBuilder: (context, item, index) =>
+                    MapCard(map: item, index: index),
+                limit: showAll ? 999 : 4,
+                axisCount: 1,
+                axisSpacing: 0,
+                mainSpacing: 25,
+              ),
+              _buildTabContent<Weapon>(
+                context: context,
+                title: "WEAPONS",
+                future: WeaponsApi()
+                    .getWeapons()
+                    .then((weapons) => weapons.toList()),
+                itemBuilder: (context, item, index) =>
+                    WeaponCard(weapon: item, index: index),
+                limit: showAll ? 999 : 6,
+                axisCount: 1,
+                axisSpacing: 0,
+                mainSpacing: 25,
+              ),
+              _buildTabContent<Gear>(
+                context: context,
+                title: "GEARS",
+                future: GearsApi().getGears().then((gears) => gears.toList()),
+                itemBuilder: (context, item, index) =>
+                    GearCard(gear: item, index: index),
+                limit: showAll ? 999 : 5,
+                axisCount: 3,
+                axisSpacing: 30,
+                mainSpacing: 40,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 

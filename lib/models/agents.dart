@@ -116,3 +116,7 @@ class Ability {
     return data;
   }
 }
+
+class RecruitmentData{
+  
+}
