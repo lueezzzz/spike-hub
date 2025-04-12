@@ -20,23 +20,22 @@ class _AgentDetailsState extends State<AgentDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromRGBO(255, 70, 86, 1),
       body: Stack(
         children: [
-          // Background gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color(0xFFd32f2f), // Red shade
-                  Colors.black,
+                  Color.fromRGBO(31, 35, 38, 1),
+                  Color.fromRGBO(31, 35, 38, 0.6),
+                  Colors.transparent,
                 ],
               ),
             ),
           ),
-
           Positioned.fill(
             child: CachedNetworkImage(
               imageUrl: widget.agent.fullPortrait ?? '',
@@ -44,7 +43,6 @@ class _AgentDetailsState extends State<AgentDetails> {
               alignment: Alignment.topCenter,
             ),
           ),
-
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -69,7 +67,6 @@ class _AgentDetailsState extends State<AgentDetails> {
               ),
             ),
           ),
-
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
