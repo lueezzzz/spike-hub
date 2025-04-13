@@ -12,14 +12,30 @@ class WeaponDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 70, 86, 1),
       appBar: AppBar(
-        title: Text(
-          weapon.displayName!.toUpperCase(),
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
         backgroundColor: Colors.transparent,
         foregroundColor: Color.fromRGBO(248, 248, 248, 1),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Row(
+            children: [
+              const SizedBox(width: 10),
+              const Icon(
+                Icons.arrow_left,
+                color: Color.fromRGBO(248, 248, 248, 1),
+              ),
+              const SizedBox(width: 5),
+              Text(
+                weapon.displayName?.toUpperCase() ?? '',
+                style: const TextStyle(
+                  color: Color.fromRGBO(248, 248, 248, 1),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+        leadingWidth: double.infinity,
       ),
       body: Container(
         decoration: const BoxDecoration(
