@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spike_hub/models/weapons.dart';
-import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_damage_range_row.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_damage_range_row.dart';
 
 class WeaponDamageStatsContainer extends StatelessWidget {
   final List<DamageRanges> damageRanges;
