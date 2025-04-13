@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spike_hub/pages/favorites_page.dart';
 import 'package:spike_hub/widgets/bottom_navbar.dart';
 import 'package:spike_hub/widgets/feature-widgets/feature_carousel.dart';
 import 'package:spike_hub/widgets/search/search_item.dart';
@@ -110,6 +111,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
                   if (title == 'HOME') {
                     showAll = false;
+                  } else if (title == "FAVORITES") {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FavoritesPage()));
                   } else {
                     showAll = true;
                     switch (title) {

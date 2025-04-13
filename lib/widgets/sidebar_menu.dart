@@ -32,6 +32,7 @@ class SidebarMenu extends StatelessWidget {
             _buildNavItem('MAPS'),
             _buildNavItem('WEAPONS'),
             _buildNavItem('GEARS'),
+            _buildNavItem('FAVORITES'),
           ],
         ),
       ),
