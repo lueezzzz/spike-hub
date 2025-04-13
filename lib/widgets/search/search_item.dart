@@ -314,7 +314,10 @@ class _SearchItem extends State<SearchItem> {
                               }
                             },
                             trailing: IconButton(
-                              icon: Icon(Icons.clear, color: Colors.grey),
+                              icon: Icon(
+                                Icons.clear,
+                                color: Color.fromRGBO(248, 248, 248, 1),
+                              ),
                               onPressed: () async {
                                 localSetState(() {
                                   recentSearches.remove(search);
@@ -458,7 +461,7 @@ class _SearchItem extends State<SearchItem> {
                                       child: const Text(
                                         'Close',
                                         style: TextStyle(
-                                          color: Color.fromRGBO(255, 70, 86, 1),
+                                          color: Color.fromRGBO(31, 35, 38, 1),
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),

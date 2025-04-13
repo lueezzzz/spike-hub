@@ -15,7 +15,7 @@ class SidebarMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromRGBO(31, 35, 38, 1),
+      color: Color.fromRGBO(15, 25, 35, 1),
       child: SafeArea(
         child: Column(
           children: [
