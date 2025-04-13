@@ -13,6 +13,7 @@ class FavoritesPage extends StatefulWidget {
 
 class _FavoritesPageState extends State<FavoritesPage> {
   final FavoriteHandler fh = FavoriteHandler();
+  bool hasChanged = false;
 
   Future<void> clearAllFavorites() async {
     final confirmed = await showDialog<bool>(
@@ -60,7 +61,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
     if (confirmed == true) {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove(FavoriteHandler.agentKey);
-      setState(() {});
+      setState(() {
+        hasChanged = true;
+      });
     }
   }
 
@@ -71,7 +74,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
+          onTap: () => Navigator.pop(context, hasChanged),
           child: Row(
             children: [
               const SizedBox(width: 10),
@@ -154,7 +157,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     agent: agent,
                     onRemove: () {
                       fh.removeAgentFromFave(agent.uuid ?? '');
-                      setState(() {});
+                      setState(() {
+                        hasChanged = true;
+                      });
                     });
               },
             );
