@@ -95,7 +95,7 @@ class _TabsState extends State<Tabs> {
                 title: "AGENTS",
                 future: cachedAgents,
                 itemBuilder: (context, item, index) =>
-                    AgentCard(agent: item, index: index),
+                    AgentCard(agent: item, index: index, ),
                 limit: widget.showAll ? 999 : 6,
                 axisCount: 3,
                 axisSpacing: 30,
@@ -105,7 +105,8 @@ class _TabsState extends State<Tabs> {
                 context: context,
                 title: "MAPS",
                 future: cachedMaps,
-                itemBuilder: (context, item, index) => MapCard(maps: item, index: index),
+                itemBuilder: (context, item, index) =>
+                    MapCard(maps: item, index: index),
                 limit: widget.showAll ? 999 : 4,
                 axisCount: 1,
                 axisSpacing: 0,
