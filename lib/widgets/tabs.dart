@@ -113,20 +113,6 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
             controller: widget.controller,
             physics: const NeverScrollableScrollPhysics(),
             children: [
-<<<<<<< HEAD
-              buildTabContent<Agent>(
-                context: context,
-                title: "AGENTS",
-                future: cachedAgents,
-                itemBuilder: (context, item, index) =>
-                    AgentCard(agent: item, index: index, ),
-                limit: widget.showAll ? 999 : 6,
-                axisCount: 3,
-                axisSpacing: 30,
-                mainSpacing: 40,
-              ),
-=======
-              // AGENTS Tab
               widget.showAll
                   ? buildAgentRoleTabs(context)
                   : buildTabContent<Agent>(
@@ -140,8 +126,6 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
                       axisSpacing: 30,
                       mainSpacing: 40,
                     ),
-              // MAPS Tab
->>>>>>> 7bd26c61184dcbdc855543c5e5abc1c7d7efd05b
               buildTabContent<Maps>(
                 context: context,
                 title: "MAPS",
@@ -153,7 +137,6 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
                 axisSpacing: 0,
                 mainSpacing: 25,
               ),
-              // WEAPONS Tab
               widget.showAll
                   ? buildGunTypeTabs(context)
                   : buildTabContent<Weapon>(
@@ -167,7 +150,6 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
                       axisSpacing: 0,
                       mainSpacing: 25,
                     ),
-              // GEARS Tab
               buildTabContent<Gear>(
                 context: context,
                 title: "GEARS",
