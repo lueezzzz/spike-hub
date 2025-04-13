@@ -18,7 +18,7 @@ class CollapseItems extends StatelessWidget {
             const Icon(
               Icons.arrow_left,
               color: Color.fromRGBO(248, 248, 248, 1),
-            ), // or arrow_back
+            ), 
             const SizedBox(width: 4),
             Text(
               title,
@@ -26,7 +26,7 @@ class CollapseItems extends StatelessWidget {
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color:
-                    Color.fromRGBO(248, 248, 248, 1), // You can style it later
+                    Color.fromRGBO(248, 248, 248, 1), 
               ),
             ),
           ],

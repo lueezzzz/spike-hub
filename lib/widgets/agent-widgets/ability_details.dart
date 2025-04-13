@@ -45,7 +45,6 @@ class _AbilityDetailsState extends State<AbilityDetails> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Ability Icon
                     Container(
                       width: double.infinity,
                       height: 160,
