@@ -6,8 +6,7 @@ class FavoriteCard extends StatelessWidget {
   final Agent agent;
   final VoidCallback onRemove;
 
-  const FavoriteCard(
-      {required this.agent, required this.onRemove, super.key});
+  const FavoriteCard({required this.agent, required this.onRemove, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +45,12 @@ class FavoriteCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 0,
-            right: -1,
+            top: -7,
+            right: 0,
             child: IconButton(
               icon: Icon(
                 Icons.remove_circle,
-                color: Colors.red,
+                color: Color.fromRGBO(255, 70, 86, 1),
               ),
               onPressed: onRemove,
             ),

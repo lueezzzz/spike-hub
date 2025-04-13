@@ -18,16 +18,40 @@ class _FavoritesPageState extends State<FavoritesPage> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Clear Favorites'),
-        content: Text('Are you sure you want to remove all favorite agents?'),
+        backgroundColor: Color.fromRGBO(248, 248, 248, 1),
+        title: Text(
+          'Clear Favorites',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Color.fromRGBO(31, 35, 38, 1),
+          ),
+        ),
+        content: Text(
+          'Are you sure you want to remove all favorite agents?',
+          style: TextStyle(
+            color: Color.fromRGBO(31, 35, 38, 1),
+          ),
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text('Cancel'),
+            child: Text(
+              'Cancel',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(31, 35, 38, 1),
+              ),
+            ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: Text('Clear All', style: TextStyle(color: Colors.red)),
+            child: Text(
+              'Clear All',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(255, 70, 86, 1),
+              ),
+            ),
           ),
         ],
       ),
@@ -46,19 +70,28 @@ class _FavoritesPageState extends State<FavoritesPage> {
       backgroundColor: Color.fromRGBO(255, 70, 86, 1),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text(
-          'FAVORITE AGENTS',
-          style: TextStyle(
-            color: Color.fromRGBO(248, 248, 248, 1),
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.2,
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Row(
+            children: [
+              const SizedBox(width: 10),
+              const Icon(
+                Icons.arrow_left,
+                color: Color.fromRGBO(248, 248, 248, 1),
+              ),
+              const SizedBox(width: 5),
+              Text(
+                'FAVORITE AGENTS',
+                style: const TextStyle(
+                  color: Color.fromRGBO(248, 248, 248, 1),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Color.fromRGBO(248, 248, 248, 1)),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        leadingWidth: double.infinity,
         actions: [
           IconButton(
             icon: Icon(Icons.delete_sweep,
@@ -82,7 +115,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 children: [
                   Icon(
                     Icons.star,
-                    color: Color.fromRGBO(255, 70, 86, 0.5),
+                    color: Color.fromRGBO(248, 248, 248, 0.5),
                     size: 48,
                   ),
                   SizedBox(height: 16),

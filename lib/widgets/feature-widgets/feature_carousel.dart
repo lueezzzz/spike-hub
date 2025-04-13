@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:spike_hub/services/feautre_handler.dart';
+import 'package:spike_hub/services/feature_handler.dart';
 import 'package:spike_hub/widgets/feature-widgets/feature_card.dart';
 
 class FeatureCarousel extends StatefulWidget {
