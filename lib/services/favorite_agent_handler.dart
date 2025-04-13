@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 class FavoriteAgentHandler {
   final Random ran = Random();
 
-
   Future<List<Map<String, dynamic>>> loadFeatures() async {
     final List<Map<String, dynamic>> features = [];
 
