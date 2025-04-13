@@ -1,3 +1,4 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:spike_hub/pages/skin_details_page.dart';
@@ -6,7 +7,6 @@ import 'package:spike_hub/pages/ability_details_page.dart';
 import 'package:spike_hub/pages/gear_details_page.dart';
 import 'package:spike_hub/pages/map_details_page.dart';
 import 'package:spike_hub/pages/weapon_details_page.dart';
-import 'package:spike_hub/widgets/weapon-widgets/weapon_skin_details.dart';
 import '../../services/agents_api.dart';
 import '../../services/map_api.dart';
 import '../../services/gears_api.dart';
@@ -29,14 +29,36 @@ class _SearchItem extends State<SearchItem> {
   late Future<List<Weapon>> weapons;
   late Future<List<Gear>> gears;
   late Future<List<Maps>> maps;
+  List<String> recentSearches = [];
 
   List<SearchableItem> searchableItems = [];
   bool isDataLoaded = false;
+
+  Future<void> loadRecentSearches() async {
+    final prefs = await SharedPreferences.getInstance();
+    recentSearches = prefs.getStringList('recent_searches') ?? [];
+    setState(() {});
+  }
+
+  Future<void> saveRecentSearch(String query) async {
+    final prefs = await SharedPreferences.getInstance();
+    if (query.trim().isEmpty) return;
+
+    recentSearches.remove(query);
+    recentSearches.insert(0, query);
+    if (recentSearches.length > 5) {
+      recentSearches = recentSearches.sublist(0, 5);
+    }
+
+    await prefs.setStringList('recent_searches', recentSearches);
+    setState(() {});
+  }
 
   @override
   void initState() {
     super.initState();
     loadData();
+    loadRecentSearches();
   }
 
   Future<void> loadData() async {
@@ -188,6 +210,7 @@ class _SearchItem extends State<SearchItem> {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
         child: SearchAnchor(
+          key: ValueKey(recentSearches.length),
           searchController: controller,
           viewBackgroundColor: Color.fromRGBO(31, 35, 38, 1),
           viewLeading: IconButton(
@@ -197,16 +220,6 @@ class _SearchItem extends State<SearchItem> {
               Navigator.of(context).pop();
             },
           ),
-          viewTrailing: [
-            IconButton(
-              icon: const Icon(Icons.close),
-              color: Color.fromRGBO(248, 248, 248, 1),
-              onPressed: () {
-                controller.clear();
-                
-              },
-            ),
-          ],
           dividerColor: Colors.transparent,
           headerTextStyle: TextStyle(
             color: Color.fromRGBO(248, 248, 248, 1),
@@ -253,17 +266,71 @@ class _SearchItem extends State<SearchItem> {
 
             if (query.isEmpty) {
               return [
-                const Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      'Type to search for agents, abilities, weapons, gear, or maps',
-                      style: TextStyle(
-                        color: Color.fromRGBO(248, 248, 248, 1),
-                      ),
-                    ),
-                  ),
-                ),
+                StatefulBuilder(
+                  builder: (context, localSetState) {
+                    if (recentSearches.isEmpty) {
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            'Type to search for agents, abilities, weapons, gear, or maps',
+                            style: TextStyle(
+                              color: Color.fromRGBO(248, 248, 248, 1),
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+
+                    return Column(
+                      children: recentSearches.map((search) {
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: ListTile(
+                            leading: Icon(Icons.history,
+                                color: Color.fromRGBO(255, 70, 86, 1)),
+                            title: Text(
+                              search,
+                              style: TextStyle(
+                                  color: Color.fromRGBO(248, 248, 248, 1)),
+                            ),
+                            onTap: () {
+                              SearchableItem? matchedItem;
+                              try {
+                                matchedItem = searchableItems.firstWhere(
+                                  (item) =>
+                                      item.name.toLowerCase() ==
+                                      search.toLowerCase(),
+                                );
+                              } catch (e) {
+                                matchedItem = null;
+                              }
+                              if (matchedItem != null) {
+                                if (controller.isAttached) {
+                                  controller.closeView(search);
+                                }
+                                navigateToDetailPage(context, matchedItem);
+                              }
+                            },
+                            trailing: IconButton(
+                              icon: Icon(Icons.clear, color: Colors.grey),
+                              onPressed: () async {
+                                localSetState(() {
+                                  recentSearches.remove(search);
+                                });
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setStringList(
+                                    'recent_searches', recentSearches);
+                              },
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  },
+                )
               ];
             }
 
@@ -276,7 +343,10 @@ class _SearchItem extends State<SearchItem> {
                 const Center(
                   child: Padding(
                     padding: EdgeInsets.all(16.0),
-                    child: Text('No results found'),
+                    child: Text(
+                      'No results found',
+                      style: TextStyle(color: Color.fromRGBO(248, 248, 248, 1)),
+                    ),
                   ),
                 ),
               ];
@@ -360,7 +430,10 @@ class _SearchItem extends State<SearchItem> {
                               )
                             : null,
                     onTap: () {
-                      controller.closeView(item.name);
+                      if (controller.isAttached) {
+                        controller.closeView(item.name);
+                      }
+                      saveRecentSearch(item.name);
                       navigateToDetailPage(context, item);
                     },
                     onLongPress: item.description != null &&
