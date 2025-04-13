@@ -31,11 +31,19 @@ class Tabs extends StatefulWidget {
   State<Tabs> createState() => _TabsState();
 }
 
-class _TabsState extends State<Tabs> {
+class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
   late Future<List<Agent>> cachedAgents;
   late Future<List<Maps>> cachedMaps;
   late Future<List<Weapon>> cachedWeapons;
   late Future<List<Gear>> cachedGears;
+  final List<String> agentRoles = [
+    'All',
+    'Controller',
+    'Duelist',
+    'Initiator',
+    'Sentinel'
+  ];
+  TabController? controllerAgentRole;
 
   @override
   void initState() {
@@ -48,13 +56,19 @@ class _TabsState extends State<Tabs> {
   }
 
   @override
+  void dispose() {
+    controllerAgentRole?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         if (!widget.showAll)
           Material(
-            color: Color.fromRGBO(31, 35, 38, 1),
-            shape: BeveledRectangleBorder(
+            color: const Color.fromRGBO(31, 35, 38, 1),
+            shape: const BeveledRectangleBorder(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(10.0),
                 bottomRight: Radius.circular(10.0),
@@ -62,20 +76,19 @@ class _TabsState extends State<Tabs> {
             ),
             child: TabBar(
               controller: widget.controller,
-              // physics: const NeverScrollableScrollPhysics(),
               labelStyle: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.2,
               ),
               indicator: MaterialIndicator(
-                color: Color.fromRGBO(248, 248, 248, 1),
+                color: const Color.fromRGBO(248, 248, 248, 1),
                 tabPosition: TabPosition.bottom,
                 topLeftRadius: 25.0,
                 topRightRadius: 25.0,
               ),
-              labelColor: Color.fromRGBO(248, 248, 248, 1),
-              unselectedLabelColor: Color.fromRGBO(248, 248, 248, 0.3),
+              labelColor: const Color.fromRGBO(248, 248, 248, 1),
+              unselectedLabelColor: const Color.fromRGBO(248, 248, 248, 0.3),
               dividerColor: Colors.transparent,
               tabs: const [
                 Tab(text: "AGENTS"),
@@ -90,27 +103,33 @@ class _TabsState extends State<Tabs> {
             controller: widget.controller,
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              buildTabContent<Agent>(
-                context: context,
-                title: "AGENTS",
-                future: cachedAgents,
-                itemBuilder: (context, item, index) =>
-                    AgentCard(agent: item, index: index),
-                limit: widget.showAll ? 999 : 6,
-                axisCount: 3,
-                axisSpacing: 30,
-                mainSpacing: 40,
-              ),
+              // AGENTS Tab
+              widget.showAll
+                  ? buildAgentRoleTabs(context)
+                  : buildTabContent<Agent>(
+                      context: context,
+                      title: "AGENTS",
+                      future: cachedAgents,
+                      itemBuilder: (context, item, index) =>
+                          AgentCard(agent: item, index: index),
+                      limit: 6,
+                      axisCount: 3,
+                      axisSpacing: 30,
+                      mainSpacing: 40,
+                    ),
+              // MAPS Tab
               buildTabContent<Maps>(
                 context: context,
                 title: "MAPS",
                 future: cachedMaps,
-                itemBuilder: (context, item, index) => MapCard(maps: item, index: index),
+                itemBuilder: (context, item, index) =>
+                    MapCard(maps: item, index: index),
                 limit: widget.showAll ? 999 : 4,
                 axisCount: 1,
                 axisSpacing: 0,
                 mainSpacing: 25,
               ),
+              // WEAPONS Tab
               buildTabContent<Weapon>(
                 context: context,
                 title: "WEAPONS",
@@ -122,6 +141,7 @@ class _TabsState extends State<Tabs> {
                 axisSpacing: 0,
                 mainSpacing: 25,
               ),
+              // GEARS Tab
               buildTabContent<Gear>(
                 context: context,
                 title: "GEARS",
@@ -134,6 +154,80 @@ class _TabsState extends State<Tabs> {
                 mainSpacing: 40,
               ),
             ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildAgentRoleTabs(BuildContext context) {
+    // Initialize TabController if not already initialized
+    controllerAgentRole ??=
+        TabController(length: agentRoles.length, vsync: this);
+
+    return Column(
+      children: [
+        CollapseItems(
+          onCollapse: () => widget.onSeeAllChanged(false),
+          title: "AGENTS",
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 10.0),
+          color: const Color.fromRGBO(31, 35, 38, 1),
+          child: TabBar(
+            controller: controllerAgentRole,
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            labelStyle: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+            ),
+            labelPadding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+            ), // Tighten padding
+            indicator: MaterialIndicator(
+              color: const Color.fromRGBO(248, 248, 248, 1),
+              tabPosition: TabPosition.bottom,
+              topLeftRadius: 25.0,
+              topRightRadius: 25.0,
+            ),
+            labelColor: const Color.fromRGBO(248, 248, 248, 1),
+            unselectedLabelColor: const Color.fromRGBO(248, 248, 248, 0.3),
+            dividerColor: Colors.transparent,
+            tabs: agentRoles.map((role) {
+              return Tab(text: role.toUpperCase());
+            }).toList(),
+          ),
+        ),
+        Expanded(
+          child: TabBarView(
+            controller: controllerAgentRole,
+            children: agentRoles.map((role) {
+              // Filter agents based on role
+              final filteredAgentsFuture = cachedAgents.then((agents) {
+                if (role == 'All') {
+                  return agents
+                      .where((agent) => agent.isPlayableCharacter == true)
+                      .toList();
+                }
+                return agents
+                    .where((agent) =>
+                        agent.role?.displayName == role &&
+                        agent.isPlayableCharacter == true)
+                    .toList();
+              });
+              return FutureBuildView<Agent>(
+                future: filteredAgentsFuture,
+                itemBuilder: (context, agent, index) =>
+                    AgentCard(agent: agent, index: index),
+                showAll: true,
+                limit: 999,
+                crossAxisCount: 3,
+                crossAxisSpacing: 30,
+                mainAxisSpacing: 40,
+              );
+            }).toList(),
           ),
         ),
       ],
