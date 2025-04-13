@@ -4,10 +4,10 @@ import 'package:spike_hub/models/maps.dart';
 import 'package:spike_hub/widgets/map-widgets/map_details.dart';
 
 class MapCard extends StatelessWidget {
-  final Maps map;
+  final Maps maps;
   final int index;
 
-  const MapCard({required this.map, required this.index, super.key});
+  const MapCard({required this.maps, required this.index, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class MapCard extends StatelessWidget {
             expand: false,
             builder: (context, scrollController) {
               return MapDetails(
-                maps: map,
+                maps: maps,
                 scrollController: scrollController,
               );
             },
@@ -66,7 +66,7 @@ class MapCard extends StatelessWidget {
                 height: 90,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: CachedNetworkImageProvider(map.splash!),
+                    image: CachedNetworkImageProvider(maps.splash!),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -76,7 +76,7 @@ class MapCard extends StatelessWidget {
               bottom: 15,
               left: 20,
               child: Text(
-                map.displayName!.toUpperCase(),
+                maps.displayName!.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,

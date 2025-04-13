@@ -13,7 +13,7 @@ import 'package:spike_hub/services/weapons_api.dart';
 import 'package:spike_hub/widgets/agent-widgets/agent_card.dart';
 import 'package:spike_hub/widgets/gear-widgets/gear_card.dart';
 import 'package:spike_hub/widgets/map-widgets/map_card.dart';
-import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_card.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_card.dart';
 
 class Tabs extends StatelessWidget {
   final bool showAll;
@@ -87,7 +87,7 @@ class Tabs extends StatelessWidget {
                 title: "MAPS",
                 future: MapApi().getMaps().then((maps) => maps.toList()),
                 itemBuilder: (context, item, index) =>
-                    MapCard(map: item, index: index),
+                    MapCard(maps: item, index: index),
                 limit: showAll ? 999 : 4,
                 axisCount: 1,
                 axisSpacing: 0,

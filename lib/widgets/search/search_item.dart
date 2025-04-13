@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:spike_hub/pages/ability_details_page.dart';
 import 'package:spike_hub/widgets/agent-widgets/agent_details.dart';
+import 'package:spike_hub/pages/ability_details_page.dart';
+import 'package:spike_hub/pages/gear_details_page.dart';
+import 'package:spike_hub/pages/map_details_page.dart';
+import 'package:spike_hub/pages/weapon_details_page.dart';
 import '../../services/agents_api.dart';
 import '../../services/map_api.dart';
 import '../../services/gears_api.dart';
@@ -128,18 +131,25 @@ class _SearchItem extends State<SearchItem> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => AbilityDetailsPage(
-                      ability: item.data,
-                    )));
+                builder: (context) => AbilityDetailsPage(ability: item.data)));
         break;
       case 'Weapon':
-        Navigator.pushNamed(context, '/weapon_detail', arguments: item.data);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => WeaponDetailsPage(weapon: item.data)));
         break;
       case 'Gear':
-        Navigator.pushNamed(context, '/gear_detail', arguments: item.data);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => GearDetailsPage(gear: item.data)));
         break;
       case 'Map':
-        Navigator.pushNamed(context, '/map_detail', arguments: item.data);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MapDetailsPage(maps: item.data)));
         break;
     }
   }
