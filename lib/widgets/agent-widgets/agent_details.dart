@@ -48,11 +48,15 @@ class _AgentDetailsState extends State<AgentDetails> {
           content: Material(
             color: Color.fromRGBO(15, 25, 35, 1),
             child: InkWell(
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                final result = await Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => FavoritesPage()),
                 );
+
+                if (result == true) {
+                  await checkIfFavorite();
+                }
               },
               child: Row(
                 children: [
