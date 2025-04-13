@@ -31,11 +31,28 @@ class Tabs extends StatefulWidget {
   State<Tabs> createState() => _TabsState();
 }
 
-class _TabsState extends State<Tabs> {
+class _TabsState extends State<Tabs> with TickerProviderStateMixin {
   late Future<List<Agent>> cachedAgents;
   late Future<List<Maps>> cachedMaps;
   late Future<List<Weapon>> cachedWeapons;
   late Future<List<Gear>> cachedGears;
+  final List<String> agentRoles = [
+    'All',
+    'Controller',
+    'Duelist',
+    'Initiator',
+    'Sentinel'
+  ];
+  final List<String> gunType = [
+    'All',
+    'Heavy',
+    'Rifle',
+    'Shotgun',
+    'Sidearm',
+    'Sniper'
+  ];
+  TabController? controllerAgentRole;
+  TabController? controllerGunType;
 
   @override
   void initState() {
@@ -48,13 +65,20 @@ class _TabsState extends State<Tabs> {
   }
 
   @override
+  void dispose() {
+    controllerAgentRole?.dispose();
+    controllerGunType?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         if (!widget.showAll)
           Material(
-            color: Color.fromRGBO(31, 35, 38, 1),
-            shape: BeveledRectangleBorder(
+            color: const Color.fromRGBO(31, 35, 38, 1),
+            shape: const BeveledRectangleBorder(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(10.0),
                 bottomRight: Radius.circular(10.0),
@@ -62,20 +86,19 @@ class _TabsState extends State<Tabs> {
             ),
             child: TabBar(
               controller: widget.controller,
-              // physics: const NeverScrollableScrollPhysics(),
               labelStyle: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.2,
               ),
               indicator: MaterialIndicator(
-                color: Color.fromRGBO(248, 248, 248, 1),
+                color: const Color.fromRGBO(248, 248, 248, 1),
                 tabPosition: TabPosition.bottom,
                 topLeftRadius: 25.0,
                 topRightRadius: 25.0,
               ),
-              labelColor: Color.fromRGBO(248, 248, 248, 1),
-              unselectedLabelColor: Color.fromRGBO(248, 248, 248, 0.3),
+              labelColor: const Color.fromRGBO(248, 248, 248, 1),
+              unselectedLabelColor: const Color.fromRGBO(248, 248, 248, 0.3),
               dividerColor: Colors.transparent,
               tabs: const [
                 Tab(text: "AGENTS"),
@@ -90,6 +113,7 @@ class _TabsState extends State<Tabs> {
             controller: widget.controller,
             physics: const NeverScrollableScrollPhysics(),
             children: [
+<<<<<<< HEAD
               buildTabContent<Agent>(
                 context: context,
                 title: "AGENTS",
@@ -101,6 +125,23 @@ class _TabsState extends State<Tabs> {
                 axisSpacing: 30,
                 mainSpacing: 40,
               ),
+=======
+              // AGENTS Tab
+              widget.showAll
+                  ? buildAgentRoleTabs(context)
+                  : buildTabContent<Agent>(
+                      context: context,
+                      title: "AGENTS",
+                      future: cachedAgents,
+                      itemBuilder: (context, item, index) =>
+                          AgentCard(agent: item, index: index),
+                      limit: 6,
+                      axisCount: 3,
+                      axisSpacing: 30,
+                      mainSpacing: 40,
+                    ),
+              // MAPS Tab
+>>>>>>> 7bd26c61184dcbdc855543c5e5abc1c7d7efd05b
               buildTabContent<Maps>(
                 context: context,
                 title: "MAPS",
@@ -112,17 +153,21 @@ class _TabsState extends State<Tabs> {
                 axisSpacing: 0,
                 mainSpacing: 25,
               ),
-              buildTabContent<Weapon>(
-                context: context,
-                title: "WEAPONS",
-                future: cachedWeapons,
-                itemBuilder: (context, item, index) =>
-                    WeaponCard(weapon: item, index: index),
-                limit: widget.showAll ? 999 : 6,
-                axisCount: 1,
-                axisSpacing: 0,
-                mainSpacing: 25,
-              ),
+              // WEAPONS Tab
+              widget.showAll
+                  ? buildGunTypeTabs(context)
+                  : buildTabContent<Weapon>(
+                      context: context,
+                      title: "WEAPONS",
+                      future: cachedWeapons,
+                      itemBuilder: (context, item, index) =>
+                          WeaponCard(weapon: item, index: index),
+                      limit: 6,
+                      axisCount: 1,
+                      axisSpacing: 0,
+                      mainSpacing: 25,
+                    ),
+              // GEARS Tab
               buildTabContent<Gear>(
                 context: context,
                 title: "GEARS",
@@ -135,6 +180,148 @@ class _TabsState extends State<Tabs> {
                 mainSpacing: 40,
               ),
             ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildAgentRoleTabs(BuildContext context) {
+    // Initialize TabController if not already initialized
+    controllerAgentRole ??=
+        TabController(length: agentRoles.length, vsync: this);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CollapseItems(
+          onCollapse: () => widget.onSeeAllChanged(false),
+          title: "AGENTS",
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 5.0),
+          color: const Color.fromRGBO(31, 35, 38, 1),
+          child: TabBar(
+            controller: controllerAgentRole,
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            labelStyle: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+            ),
+            labelPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+            indicator: MaterialIndicator(
+              color: const Color.fromRGBO(248, 248, 248, 1),
+              tabPosition: TabPosition.bottom,
+              topLeftRadius: 25.0,
+              topRightRadius: 25.0,
+            ),
+            labelColor: const Color.fromRGBO(248, 248, 248, 1),
+            unselectedLabelColor: const Color.fromRGBO(248, 248, 248, 0.3),
+            dividerColor: Colors.transparent,
+            tabs: agentRoles.map((role) {
+              return Tab(text: role.toUpperCase());
+            }).toList(),
+          ),
+        ),
+        Expanded(
+          child: TabBarView(
+            controller: controllerAgentRole,
+            children: agentRoles.map((role) {
+              // Filter agents based on role
+              final filteredAgentsFuture = cachedAgents.then((agents) {
+                if (role == 'All') {
+                  return agents
+                      .where((agent) => agent.isPlayableCharacter == true)
+                      .toList();
+                }
+                return agents
+                    .where((agent) =>
+                        agent.role?.displayName == role &&
+                        agent.isPlayableCharacter == true)
+                    .toList();
+              });
+              return FutureBuildView<Agent>(
+                future: filteredAgentsFuture,
+                itemBuilder: (context, agent, index) =>
+                    AgentCard(agent: agent, index: index),
+                showAll: true,
+                limit: 999,
+                crossAxisCount: 3,
+                crossAxisSpacing: 30,
+                mainAxisSpacing: 40,
+              );
+            }).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildGunTypeTabs(BuildContext context) {
+    // Initialize TabController if not already initialized
+    controllerGunType ??= TabController(length: gunType.length, vsync: this);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CollapseItems(
+          onCollapse: () => widget.onSeeAllChanged(false),
+          title: "WEAPONS",
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 5.0),
+          color: const Color.fromRGBO(31, 35, 38, 1),
+          child: TabBar(
+            controller: controllerGunType,
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            labelStyle: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+            ),
+            labelPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+            indicator: MaterialIndicator(
+              color: const Color.fromRGBO(248, 248, 248, 1),
+              tabPosition: TabPosition.bottom,
+              topLeftRadius: 25.0,
+              topRightRadius: 25.0,
+            ),
+            labelColor: const Color.fromRGBO(248, 248, 248, 1),
+            unselectedLabelColor: const Color.fromRGBO(248, 248, 248, 0.3),
+            dividerColor: Colors.transparent,
+            tabs: gunType.map((type) {
+              return Tab(text: type.toUpperCase());
+            }).toList(),
+          ),
+        ),
+        Expanded(
+          child: TabBarView(
+            controller: controllerGunType,
+            children: gunType.map((type) {
+              // Filter weapons based on category
+              final filteredWeaponsFuture = cachedWeapons.then((weapons) {
+                if (type == 'All') {
+                  return weapons.toList();
+                }
+                return weapons
+                    .where(
+                        (weapon) => weapon.category?.split("::").last == type)
+                    .toList();
+              });
+              return FutureBuildView<Weapon>(
+                future: filteredWeaponsFuture,
+                itemBuilder: (context, weapon, index) =>
+                    WeaponCard(weapon: weapon, index: index),
+                showAll: true,
+                limit: 999,
+                crossAxisCount: 1,
+                crossAxisSpacing: 0,
+                mainAxisSpacing: 25,
+              );
+            }).toList(),
           ),
         ),
       ],
