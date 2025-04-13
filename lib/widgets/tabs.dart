@@ -169,7 +169,6 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
   }
 
   Widget buildAgentRoleTabs(BuildContext context) {
-    // Initialize TabController if not already initialized
     controllerAgentRole ??=
         TabController(length: agentRoles.length, vsync: this);
 
@@ -242,7 +241,6 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
   }
 
   Widget buildGunTypeTabs(BuildContext context) {
-    // Initialize TabController if not already initialized
     controllerGunType ??= TabController(length: gunType.length, vsync: this);
 
     return Column(
