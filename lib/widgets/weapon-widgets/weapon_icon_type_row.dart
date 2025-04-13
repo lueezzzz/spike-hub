@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:spike_hub/models/weapons.dart';
-import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_stats.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_stats.dart';
 
 class WeaponIconAndTypeRow extends StatelessWidget {
   final Weapon weapon;

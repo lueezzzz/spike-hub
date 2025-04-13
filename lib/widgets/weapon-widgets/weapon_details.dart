@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:spike_hub/models/weapons.dart';
-import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_damage_stats_container.dart';
-import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_header.dart';
-import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_icon_type_row.dart';
-import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_stats_row.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_damage_stats_container.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_header.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_icon_type_row.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_stats_row.dart';
 
 class WeaponDetails extends StatefulWidget {
   final Weapon weapon;
@@ -25,6 +25,7 @@ class _WeaponDetailsState extends State<WeaponDetails> {
     final weapon = widget.weapon;
 
     return Container(
+      color: Colors.transparent,
       child: SingleChildScrollView(
         controller: widget.scrollController,
         child: Column(

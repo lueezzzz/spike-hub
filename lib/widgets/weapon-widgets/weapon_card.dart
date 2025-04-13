@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:spike_hub/models/weapons.dart';
-import 'package:spike_hub/widgets/weapon-widgets.dart/weapon_details.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_details.dart';
 
 class WeaponCard extends StatelessWidget {
   final Weapon weapon;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:spike_hub/models/agents.dart';
-import 'package:spike_hub/widgets/agent-widgets/ability_details.dart';
+import 'package:spike_hub/models/weapons.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_details.dart';
 
-class AbilityDetailsPage extends StatelessWidget {
-  final Ability ability;
+class WeaponDetailsPage extends StatelessWidget {
+  final Weapon weapon;
 
-  const AbilityDetailsPage({required this.ability, super.key});
+  const WeaponDetailsPage({required this.weapon, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class AbilityDetailsPage extends StatelessWidget {
               ),
               const SizedBox(width: 5),
               Text(
-                ability.displayName?.toUpperCase() ?? '',
+                weapon.displayName?.toUpperCase() ?? '',
                 style: const TextStyle(
                   color: Color.fromRGBO(248, 248, 248, 1),
                   fontSize: 24,
@@ -52,8 +52,8 @@ class AbilityDetailsPage extends StatelessWidget {
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
-            child: AbilityDetails(
-              ability: ability,
+            child: WeaponDetails(
+              weapon: weapon,
               scrollController: ScrollController(),
             ),
           ),

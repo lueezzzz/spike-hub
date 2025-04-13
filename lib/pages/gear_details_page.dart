@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:spike_hub/models/agents.dart';
-import 'package:spike_hub/widgets/agent-widgets/ability_details.dart';
+import 'package:spike_hub/models/gears.dart';
+import 'package:spike_hub/widgets/gear-widgets/gear_details.dart';
 
-class AbilityDetailsPage extends StatelessWidget {
-  final Ability ability;
+class GearDetailsPage extends StatelessWidget {
+  final Gear gear;
 
-  const AbilityDetailsPage({required this.ability, super.key});
+  const GearDetailsPage({required this.gear, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class AbilityDetailsPage extends StatelessWidget {
               ),
               const SizedBox(width: 5),
               Text(
-                ability.displayName?.toUpperCase() ?? '',
+                gear.displayName?.toUpperCase() ?? '',
                 style: const TextStyle(
                   color: Color.fromRGBO(248, 248, 248, 1),
                   fontSize: 24,
@@ -52,8 +52,8 @@ class AbilityDetailsPage extends StatelessWidget {
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
-            child: AbilityDetails(
-              ability: ability,
+            child: GearDetails(
+              gear: gear,
               scrollController: ScrollController(),
             ),
           ),

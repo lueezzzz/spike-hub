@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:spike_hub/models/agents.dart';
-import 'package:spike_hub/widgets/agent-widgets/ability_details.dart';
+import 'package:spike_hub/models/maps.dart';
+import 'package:spike_hub/widgets/map-widgets/map_details.dart';
 
-class AbilityDetailsPage extends StatelessWidget {
-  final Ability ability;
+class MapDetailsPage extends StatelessWidget {
+  final Maps maps;
 
-  const AbilityDetailsPage({required this.ability, super.key});
+  const MapDetailsPage({required this.maps, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class AbilityDetailsPage extends StatelessWidget {
               ),
               const SizedBox(width: 5),
               Text(
-                ability.displayName?.toUpperCase() ?? '',
+                maps.displayName?.toUpperCase() ?? '',
                 style: const TextStyle(
                   color: Color.fromRGBO(248, 248, 248, 1),
                   fontSize: 24,
@@ -52,8 +52,8 @@ class AbilityDetailsPage extends StatelessWidget {
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
-            child: AbilityDetails(
-              ability: ability,
+            child: MapDetails(
+              maps: maps,
               scrollController: ScrollController(),
             ),
           ),

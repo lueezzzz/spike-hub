@@ -79,7 +79,7 @@ class _AgentDetailsState extends State<AgentDetails> {
                       widget.agent.displayName?.toUpperCase() ?? '',
                       style: const TextStyle(
                         color: Color.fromRGBO(248, 248, 248, 1),
-                        fontSize: 18,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
