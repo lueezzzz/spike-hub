@@ -48,7 +48,7 @@ class GearCard extends StatelessWidget {
                     topLeft: Radius.circular(15.0),
                   ),
                 ),
-                child: Container(
+                child: SizedBox(
                   width: 100,
                   height: 100,
                 ),

@@ -48,7 +48,7 @@ class MapCard extends StatelessWidget {
                     topLeft: Radius.circular(15.0),
                   ),
                 ),
-                child: Container(
+                child: SizedBox(
                   width: 350,
                   height: 90,
                 ),
@@ -66,8 +66,9 @@ class MapCard extends StatelessWidget {
                 height: 90,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: CachedNetworkImageProvider(map.listViewIcon!),
-                      fit: BoxFit.cover),
+                    image: CachedNetworkImageProvider(map.splash!),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -77,10 +78,10 @@ class MapCard extends StatelessWidget {
               child: Text(
                 map.displayName!.toUpperCase(),
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.6),
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],

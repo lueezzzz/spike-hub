@@ -19,13 +19,12 @@ class GearHeader extends StatelessWidget {
               color: Color.fromRGBO(31, 35, 38, 1),
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              letterSpacing: 1.2,
             ),
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: Colors.redAccent,
+              color: Color.fromRGBO(255, 70, 86, 1),
               borderRadius: BorderRadius.circular(4),
             ),
             child: Text(

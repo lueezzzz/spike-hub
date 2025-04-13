@@ -25,9 +25,6 @@ class _WeaponDetailsState extends State<WeaponDetails> {
     final weapon = widget.weapon;
 
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.transparent,
-      ),
       child: SingleChildScrollView(
         controller: widget.scrollController,
         child: Column(
@@ -36,7 +33,7 @@ class _WeaponDetailsState extends State<WeaponDetails> {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
-                color: const Color(0xFF0F1923),
+                color: Color.fromRGBO(15, 25, 35, 1),
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(

@@ -14,7 +14,7 @@ class WeaponDamageStatsContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       margin: const EdgeInsets.only(top: 20),
       decoration: BoxDecoration(
-        color: Colors.black26,
+        color: Color.fromRGBO(248, 248, 248, 0.05),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Column(
@@ -25,7 +25,7 @@ class WeaponDamageStatsContainer extends StatelessWidget {
             child: const Text(
               "DAMAGE",
               style: TextStyle(
-                color: Colors.white,
+                color: Color.fromRGBO(248, 248, 248, 1),
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),

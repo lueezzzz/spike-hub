@@ -21,9 +21,10 @@ class WeaponIconAndTypeRow extends StatelessWidget {
                       imageUrl: weapon.displayIcon!,
                       fit: BoxFit.contain,
                       width: 85,
-                      color: Colors.white,
+                      color: Color.fromRGBO(248, 248, 248, 1),
                     )
-                  : const Icon(Icons.error, color: Colors.white),
+                  : const Icon(Icons.error,
+                      color: Color.fromRGBO(248, 248, 248, 1)),
             ),
           ),
         ),

@@ -20,7 +20,7 @@ class WeaponStatsItem extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-            color: Colors.white,
+            color: Color.fromRGBO(248, 248, 248, 1),
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
@@ -31,7 +31,7 @@ class WeaponStatsItem extends StatelessWidget {
           Text(
             value!,
             style: const TextStyle(
-              color: Colors.white,
+              color: Color.fromRGBO(248, 248, 248, 1),
               fontSize: 18,
               fontWeight: FontWeight.w500,
             ),
