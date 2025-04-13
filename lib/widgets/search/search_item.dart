@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:spike_hub/pages/skin_details_page.dart';
 import 'package:spike_hub/widgets/agent-widgets/agent_details.dart';
 import 'package:spike_hub/pages/ability_details_page.dart';
 import 'package:spike_hub/pages/gear_details_page.dart';
 import 'package:spike_hub/pages/map_details_page.dart';
 import 'package:spike_hub/pages/weapon_details_page.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_skin_details.dart';
 import '../../services/agents_api.dart';
 import '../../services/map_api.dart';
 import '../../services/gears_api.dart';
@@ -159,6 +161,12 @@ class _SearchItem extends State<SearchItem> {
             MaterialPageRoute(
                 builder: (context) => WeaponDetailsPage(weapon: item.data)));
         break;
+      case 'Skin':
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => SkinDetailsPage(skin: item.data)));
+        break;
       case 'Gear':
         Navigator.push(
             context,
@@ -195,6 +203,7 @@ class _SearchItem extends State<SearchItem> {
               color: Color.fromRGBO(248, 248, 248, 1),
               onPressed: () {
                 controller.clear();
+                
               },
             ),
           ],
