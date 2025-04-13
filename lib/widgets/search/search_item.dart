@@ -1,10 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:spike_hub/widgets/agent-widgets/agent_details.dart';
 import 'package:spike_hub/pages/ability_details_page.dart';
-import 'package:spike_hub/pages/gear_details_page.dart';
-import 'package:spike_hub/pages/map_details_page.dart';
-import 'package:spike_hub/pages/weapon_details_page.dart';
+import 'package:spike_hub/widgets/agent-widgets/agent_details.dart';
 import '../../services/agents_api.dart';
 import '../../services/map_api.dart';
 import '../../services/gears_api.dart';
@@ -131,57 +128,27 @@ class _SearchItem extends State<SearchItem> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => AbilityDetailsPage(ability: item.data)));
+                builder: (context) => AbilityDetailsPage(
+                      ability: item.data,
+                    )));
         break;
       case 'Weapon':
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => WeaponDetailsPage(weapon: item.data)));
+        Navigator.pushNamed(context, '/weapon_detail', arguments: item.data);
         break;
       case 'Gear':
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => GearDetailsPage(gear: item.data)));
+        Navigator.pushNamed(context, '/gear_detail', arguments: item.data);
         break;
       case 'Map':
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => MapDetailsPage(maps: item.data)));
+        Navigator.pushNamed(context, '/map_detail', arguments: item.data);
         break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final SearchController controller = SearchController();
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
         child: SearchAnchor(
-          searchController: controller,
-          viewBackgroundColor: Color.fromRGBO(31, 35, 38, 1),
-          viewLeading: IconButton(
-            icon: const Icon(Icons.arrow_left),
-            color: Color.fromRGBO(248, 248, 248, 1),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          viewTrailing: [
-            IconButton(
-              icon: const Icon(Icons.close),
-              color: Color.fromRGBO(248, 248, 248, 1),
-              onPressed: () {
-                controller.clear();
-              },
-            ),
-          ],
-          dividerColor: Colors.transparent,
-          headerTextStyle: TextStyle(
-            color: Color.fromRGBO(248, 248, 248, 1),
-          ),
           builder: (BuildContext context, SearchController controller) {
             return SearchBar(
               controller: controller,
@@ -228,11 +195,7 @@ class _SearchItem extends State<SearchItem> {
                   child: Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'Type to search for agents, abilities, weapons, gear, or maps',
-                      style: TextStyle(
-                        color: Color.fromRGBO(248, 248, 248, 1),
-                      ),
-                    ),
+                        'Type to search for agents, abilities, weapons, gear, or maps'),
                   ),
                 ),
               ];
@@ -269,11 +232,11 @@ class _SearchItem extends State<SearchItem> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16.0, vertical: 8.0),
                   child: Text(
-                    type.toUpperCase(),
+                    type,
                     style: const TextStyle(
-                      color: Color.fromRGBO(255, 70, 86, 1),
                       fontWeight: FontWeight.bold,
                       fontSize: 16.0,
+                      color: Colors.redAccent,
                     ),
                   ),
                 ),
@@ -285,7 +248,7 @@ class _SearchItem extends State<SearchItem> {
                     leading: item.iconUrl.isNotEmpty && item.type == 'Ability'
                         ? ColorFiltered(
                             colorFilter: ColorFilter.mode(
-                              Color.fromRGBO(248, 248, 248, 1),
+                              Colors.black,
                               BlendMode.srcIn,
                             ),
                             child: CachedNetworkImage(
@@ -302,85 +265,51 @@ class _SearchItem extends State<SearchItem> {
                               )
                             : Icon(
                                 getIconForUnfetched(item.type),
-                                color: Color.fromRGBO(255, 70, 86, 1),
+                                color: Colors.redAccent,
                               ),
-                    title: Text(
-                      item.name,
-                      style: TextStyle(
-                        color: Color.fromRGBO(248, 248, 248, 1),
-                      ),
-                    ),
+                    title: Text(item.name),
                     subtitle: item.type == 'Ability' && item.parentName != null
                         ? Text(
-                            '${item.parentName} - ${getAbilityTypeText(item.subtype!)}',
-                            style: TextStyle(
-                              color: Color.fromRGBO(248, 248, 248, 0.7),
-                            ),
-                          )
-                        : Text(
-                            item.type,
-                            style: TextStyle(
-                              color: Color.fromRGBO(248, 248, 248, 0.7),
-                            ),
-                          ),
+                            '${item.parentName} - ${getAbilityTypeText(item.subtype!)}')
+                        : Text(item.type),
                     trailing:
                         item.description != null && item.description!.isNotEmpty
-                            ? const Icon(
-                                Icons.info_outline,
-                                color: Color.fromRGBO(248, 248, 248, 1),
-                              )
+                            ? const Icon(Icons.info_outline)
                             : null,
                     onTap: () {
                       controller.closeView(item.name);
                       navigateToDetailPage(context, item);
                     },
-                    onLongPress: item.description != null &&
-                            item.description!.isNotEmpty
-                        ? () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Text(
-                                    item.name.toUpperCase(),
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  content: Text(item.description!),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text(
-                                        'Close',
-                                        style: TextStyle(
-                                          color: Color.fromRGBO(255, 70, 86, 1),
-                                          fontWeight: FontWeight.bold,
+                    onLongPress:
+                        item.description != null && item.description!.isNotEmpty
+                            ? () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text(item.name),
+                                      content: Text(item.description!),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('Close'),
                                         ),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                        controller.closeView(item.name);
-                                        navigateToDetailPage(context, item);
-                                      },
-                                      child: const Text(
-                                        'View Details',
-                                        style: TextStyle(
-                                          color: Color.fromRGBO(255, 70, 86, 1),
-                                          fontWeight: FontWeight.bold,
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                            controller.closeView(item.name);
+                                            navigateToDetailPage(context, item);
+                                          },
+                                          child: const Text('View Details'),
                                         ),
-                                      ),
-                                    ),
-                                  ],
+                                      ],
+                                    );
+                                  },
                                 );
-                              },
-                            );
-                          }
-                        : null,
+                              }
+                            : null,
                   ),
                 );
               }

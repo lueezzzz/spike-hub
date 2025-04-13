@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:spike_hub/models/weapons.dart';
 import 'package:spike_hub/widgets/weapon-widgets/weapon_details.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_skins_botom_sheet.dart';
 
 class WeaponCard extends StatelessWidget {
   final Weapon weapon;
@@ -12,6 +13,23 @@ class WeaponCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onLongPress: () {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          builder: (context) => DraggableScrollableSheet(
+            initialChildSize: 0.5,
+            minChildSize: 0.3,
+            maxChildSize: 0.9,
+            expand: false,
+            builder: (context, scrollController) {
+              return WeaponSkinsBottomSheet(
+                  weapon: weapon, scrollController: scrollController);
+            },
+          ),
+        );
+      },
       onTap: () {
         showModalBottomSheet(
           context: context,

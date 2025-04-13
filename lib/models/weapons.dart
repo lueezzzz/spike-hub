@@ -6,6 +6,7 @@ class Weapon {
   String? category;
   Stats? weaponStats;
   ShopData? shopData;
+  List<WeaponSkin>? skins;
 
   Weapon({
     this.uuid,
@@ -15,6 +16,7 @@ class Weapon {
     this.category,
     this.weaponStats,
     this.shopData,
+    this.skins,
   });
 
   Weapon.fromJson(Map<String, dynamic> json) {
@@ -28,6 +30,12 @@ class Weapon {
         : null;
     shopData =
         json['shopData'] != null ? ShopData.fromJson(json['shopData']) : null;
+    if (json['skins'] != null) {
+      skins = <WeaponSkin>[];
+      json['skins'].forEach((v) {
+        skins!.add(WeaponSkin.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -43,7 +51,9 @@ class Weapon {
     if (shopData != null) {
       data['shopData'] = shopData!.toJson();
     }
-
+    if (skins != null) {
+      data['skins'] = skins!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
@@ -153,6 +163,37 @@ class ShopData {
     data['categoryText'] = categoryText;
     data['newImage'] = newImage;
     data['canBeTrashed'] = canBeTrashed;
+
+    return data;
+  }
+}
+
+class WeaponSkin {
+  String? uuid;
+  String? displayName;
+  String? displayIcon;
+  String? wallpaper;
+
+  WeaponSkin({
+    this.uuid,
+    this.displayName,
+    this.displayIcon,
+    this.wallpaper,
+  });
+
+  WeaponSkin.fromJson(Map<String, dynamic> json) {
+    uuid = json['uuid'];
+    displayName = json['displayName'];
+    displayIcon = json['displayIcon'];
+    wallpaper = json['wallpaper'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['uuid'] = uuid;
+    data['displayName'] = displayName;
+    data['displayIcon'] = displayIcon;
+    data['wallpaper'] = wallpaper;
 
     return data;
   }
