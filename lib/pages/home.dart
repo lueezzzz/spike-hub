@@ -23,12 +23,35 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+    _tabController.addListener(_handleChange);
   }
 
   @override
   void dispose() {
+    _tabController.removeListener(_handleChange);
     _tabController.dispose();
     super.dispose();
+  }
+
+  void _handleChange() {
+    if (!_tabController.indexIsChanging) {
+      setState(() {
+        switch (_tabController.index) {
+          case 0:
+            activeTab = 'AGENTS';
+            break;
+          case 1:
+            activeTab = 'MAPS';
+            break;
+          case 2:
+            activeTab = 'WEAPONS';
+            break;
+          case 3:
+            activeTab = 'GEARS';
+            break;
+        }
+      });
+    }
   }
 
   @override
@@ -74,6 +97,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                         });
                       },
                       controller: _tabController,
+                      onReturnToHome: () {
+                        setState(() {
+                          activeTab = 'HOME';
+                        });
+                      },
                     ),
                   ),
                 ],
@@ -115,7 +143,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => FavoritesPage()));
+                            builder: (context) => FavoritesPage())).then((_) {
+                      setState(() {
+                        activeTab = 'HOME';
+                      });
+                    });
                   } else {
                     showAll = true;
                     switch (title) {

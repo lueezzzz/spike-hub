@@ -19,12 +19,14 @@ class Tabs extends StatefulWidget {
   final bool showAll;
   final void Function(bool) onSeeAllChanged;
   final TabController controller;
+  final void Function()? onReturnToHome;
 
   const Tabs({
     super.key,
     required this.showAll,
     required this.onSeeAllChanged,
     required this.controller,
+    this.onReturnToHome,
   });
 
   @override
@@ -176,7 +178,12 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CollapseItems(
-          onCollapse: () => widget.onSeeAllChanged(false),
+          onCollapse: () {
+            widget.onSeeAllChanged(false);
+            if (widget.onReturnToHome != null) {
+              widget.onReturnToHome!();
+            }
+          },
           title: "AGENTS",
         ),
         Container(
@@ -247,7 +254,12 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CollapseItems(
-          onCollapse: () => widget.onSeeAllChanged(false),
+          onCollapse: () {
+            widget.onSeeAllChanged(false);
+            if (widget.onReturnToHome != null) {
+              widget.onReturnToHome!();
+            }
+          },
           title: "WEAPONS",
         ),
         Container(
@@ -322,7 +334,13 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
       children: [
         if (widget.showAll)
           CollapseItems(
-            onCollapse: () => widget.onSeeAllChanged(false),
+            onCollapse: () {
+              widget.onSeeAllChanged(false);
+
+              if (widget.onReturnToHome != null) {
+                widget.onReturnToHome!();
+              }
+            },
             title: title,
           ),
         Expanded(
