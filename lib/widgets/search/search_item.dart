@@ -87,6 +87,26 @@ class _SearchItem extends State<SearchItem> {
           data: weapon,
           description: weapon.category ?? '',
         ));
+
+        if (weapon.skins != null) {
+          for (var skin in weapon.skins!) {
+            if (skin.displayName != null &&
+                skin.displayName!.isNotEmpty &&
+                !skin.displayName!.toLowerCase().contains('standard') &&
+                !skin.displayName!.toLowerCase().contains('default')) {
+              items.add(SearchableItem(
+                id: skin.uuid ?? '${weapon.uuid}-skin-${items.length}',
+                name: skin.displayName!,
+                type: 'Skin',
+                iconUrl: skin.displayIcon ?? weapon.displayIcon ?? '',
+                data: skin,
+                description: 'Weapon Skin',
+                parentName: weapon.displayName,
+                subtype: 'weapon-skin',
+              ));
+            }
+          }
+        }
       }
 
       for (var gear in gearsList) {
@@ -399,6 +419,8 @@ class _SearchItem extends State<SearchItem> {
         return Icons.auto_fix_high;
       case 'Weapon':
         return Icons.gps_fixed;
+      case 'Skin':
+        return Icons.style;
       case 'Gear':
         return Icons.shield;
       case 'Map':
