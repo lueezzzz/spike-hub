@@ -31,7 +31,7 @@ class Tabs extends StatefulWidget {
   State<Tabs> createState() => _TabsState();
 }
 
-class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
+class _TabsState extends State<Tabs> with TickerProviderStateMixin {
   late Future<List<Agent>> cachedAgents;
   late Future<List<Maps>> cachedMaps;
   late Future<List<Weapon>> cachedWeapons;
@@ -43,7 +43,16 @@ class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
     'Initiator',
     'Sentinel'
   ];
+  final List<String> gunType = [
+    'All',
+    'Heavy',
+    'Rifle',
+    'Shotgun',
+    'Sidearm',
+    'Sniper'
+  ];
   TabController? controllerAgentRole;
+  TabController? controllerGunType;
 
   @override
   void initState() {
@@ -58,6 +67,7 @@ class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
   @override
   void dispose() {
     controllerAgentRole?.dispose();
+    controllerGunType?.dispose();
     super.dispose();
   }
 
@@ -130,17 +140,19 @@ class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
                 mainSpacing: 25,
               ),
               // WEAPONS Tab
-              buildTabContent<Weapon>(
-                context: context,
-                title: "WEAPONS",
-                future: cachedWeapons,
-                itemBuilder: (context, item, index) =>
-                    WeaponCard(weapon: item, index: index),
-                limit: widget.showAll ? 999 : 6,
-                axisCount: 1,
-                axisSpacing: 0,
-                mainSpacing: 25,
-              ),
+              widget.showAll
+                  ? buildGunTypeTabs(context)
+                  : buildTabContent<Weapon>(
+                      context: context,
+                      title: "WEAPONS",
+                      future: cachedWeapons,
+                      itemBuilder: (context, item, index) =>
+                          WeaponCard(weapon: item, index: index),
+                      limit: 6,
+                      axisCount: 1,
+                      axisSpacing: 0,
+                      mainSpacing: 25,
+                    ),
               // GEARS Tab
               buildTabContent<Gear>(
                 context: context,
@@ -166,13 +178,14 @@ class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
         TabController(length: agentRoles.length, vsync: this);
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CollapseItems(
           onCollapse: () => widget.onSeeAllChanged(false),
           title: "AGENTS",
         ),
         Container(
-          margin: EdgeInsets.only(top: 10.0),
+          margin: const EdgeInsets.only(top: 5.0),
           color: const Color.fromRGBO(31, 35, 38, 1),
           child: TabBar(
             controller: controllerAgentRole,
@@ -183,9 +196,7 @@ class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2,
             ),
-            labelPadding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-            ), // Tighten padding
+            labelPadding: const EdgeInsets.symmetric(horizontal: 16.0),
             indicator: MaterialIndicator(
               color: const Color.fromRGBO(248, 248, 248, 1),
               tabPosition: TabPosition.bottom,
@@ -226,6 +237,75 @@ class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
                 crossAxisCount: 3,
                 crossAxisSpacing: 30,
                 mainAxisSpacing: 40,
+              );
+            }).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildGunTypeTabs(BuildContext context) {
+    // Initialize TabController if not already initialized
+    controllerGunType ??= TabController(length: gunType.length, vsync: this);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CollapseItems(
+          onCollapse: () => widget.onSeeAllChanged(false),
+          title: "WEAPONS",
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 5.0),
+          color: const Color.fromRGBO(31, 35, 38, 1),
+          child: TabBar(
+            controller: controllerGunType,
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            labelStyle: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+            ),
+            labelPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+            indicator: MaterialIndicator(
+              color: const Color.fromRGBO(248, 248, 248, 1),
+              tabPosition: TabPosition.bottom,
+              topLeftRadius: 25.0,
+              topRightRadius: 25.0,
+            ),
+            labelColor: const Color.fromRGBO(248, 248, 248, 1),
+            unselectedLabelColor: const Color.fromRGBO(248, 248, 248, 0.3),
+            dividerColor: Colors.transparent,
+            tabs: gunType.map((type) {
+              return Tab(text: type.toUpperCase());
+            }).toList(),
+          ),
+        ),
+        Expanded(
+          child: TabBarView(
+            controller: controllerGunType,
+            children: gunType.map((type) {
+              // Filter weapons based on category
+              final filteredWeaponsFuture = cachedWeapons.then((weapons) {
+                if (type == 'All') {
+                  return weapons.toList();
+                }
+                return weapons
+                    .where(
+                        (weapon) => weapon.category?.split("::").last == type)
+                    .toList();
+              });
+              return FutureBuildView<Weapon>(
+                future: filteredWeaponsFuture,
+                itemBuilder: (context, weapon, index) =>
+                    WeaponCard(weapon: weapon, index: index),
+                showAll: true,
+                limit: 999,
+                crossAxisCount: 1,
+                crossAxisSpacing: 0,
+                mainAxisSpacing: 25,
               );
             }).toList(),
           ),
