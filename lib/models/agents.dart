@@ -117,6 +117,3 @@ class Ability {
   }
 }
 
-class RecruitmentData{
-  
-}

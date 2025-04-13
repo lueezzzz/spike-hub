@@ -1,0 +1,184 @@
+{
+  "facts": [
+    {
+      "id": 1,
+      "text": "Sova was initially conceived as a female character."
+    },
+    {
+      "id": 2,
+      "text": "Several agent abilities, such as Raze's grenade, Kay/o's molly, and Breach's aftershock, deal 1/3 damage to allies."
+    },
+    {
+      "id": 3,
+      "text": "The 'Kay' in Kay/o's name stands for the letter K, making his name a play on 'K.O.'"
+    },
+    {
+      "id": 4,
+      "text": "Phoenix's wall deals more damage the closer enemies are to the initial casting point."
+    },
+    {
+      "id": 5,
+      "text": "Running across Sage's slow orbs produces an audible sound cue."
+    },
+    {
+      "id": 6,
+      "text": "Viper's wall inflicts 30 instant decay damage."
+    },
+    {
+      "id": 7,
+      "text": "The vulnerable status effect doubles the damage taken."
+    },
+    {
+      "id": 8,
+      "text": "Standing in the center of Phoenix's molly deals more damage over time."
+    },
+    {
+      "id": 9,
+      "text": "Combining Phoenix's molly and wall heals for a total of 100 health."
+    },
+    {
+      "id": 10,
+      "text": "Yoru's name means 'night' in Japanese."
+    },
+    {
+      "id": 11,
+      "text": "Contrary to popular belief, Omen's real name is not Fred."
+    },
+    {
+      "id": 12,
+      "text": "Brimstone's stim beacon increases fire rate by 15%."
+    },
+    {
+      "id": 13,
+      "text": "Kay/o's suppression blade can completely cancel Sova's ultimate."
+    },
+    {
+      "id": 14,
+      "text": "Raze's satchel charges deal a whopping 600 damage to objects."
+    },
+    {
+      "id": 15,
+      "text": "Viper's ultimate, Viper's Pit, lingers for 15 seconds after she exits it."
+    },
+    {
+      "id": 16,
+      "text": "The smoke created when recalling Astra's stars lasts for 1 second."
+    },
+    {
+      "id": 17,
+      "text": "Technically speaking, Cypher's cage is not classified as a smoke."
+    },
+    {
+      "id": 18,
+      "text": "Yoru's ultimate can be used to reach the bottom of the practice range."
+    },
+    {
+      "id": 19,
+      "text": "Brimstone's ultimate can be cast outside the boundaries of the map."
+    },
+    {
+      "id": 20,
+      "text": "Throwing Brimstone's molly straight up will cause it to remain airborne for 8 seconds."
+    },
+    {
+      "id": 21,
+      "text": "Raze's satchel charges can be used to make her boombot jump."
+    },
+    {
+      "id": 22,
+      "text": "Firing Viper's wall directly at the ground will cause it to disappear."
+    },
+    {
+      "id": 23,
+      "text": "When taking damage, shields absorb 66% while the remaining 34% is taken as health damage."
+    },
+    {
+      "id": 24,
+      "text": "Cypher's cage can be refunded if deployed during the buy phase."
+    },
+    {
+      "id": 25,
+      "text": "Astra's home country of Ghana features a lake formed by a meteor strike."
+    },
+    {
+      "id": 26,
+      "text": "Jett is the shortest agent in the game."
+    },
+    {
+      "id": 27,
+      "text": "Brimstone is the only agent capable of self-eliminating using only his abilities at full health and shields."
+    },
+    {
+      "id": 28,
+      "text": "Yoru's teleport takes approximately 1.25 seconds to complete."
+    },
+    {
+      "id": 29,
+      "text": "The map Split is located in Japan."
+    },
+    {
+      "id": 30,
+      "text": "Ascent takes place in Italy."
+    },
+    {
+      "id": 31,
+      "text": "Bind is set in Morocco."
+    },
+    {
+      "id": 32,
+      "text": "Haven is situated in Bhutan."
+    },
+    {
+      "id": 33,
+      "text": "Icebox's location is in Russia."
+    },
+    {
+      "id": 34,
+      "text": "Yoru's footsteps can hold teleporter doors open."
+    },
+    {
+      "id": 35,
+      "text": "Viper's wall extends through teleporters to the other side."
+    },
+    {
+      "id": 36,
+      "text": "Killjoy is unable to use her ultimate while falling from heights."
+    },
+    {
+      "id": 37,
+      "text": "Running with a gold-tier weapon is faster than running with the tactical knife."
+    },
+    {
+      "id": 38,
+      "text": "After a round concludes, there is a 6-second window before the next round begins."
+    },
+    {
+      "id": 39,
+      "text": "While in his alternate shadow form, Omen can see his allies' movements but not their weapons."
+    },
+    {
+      "id": 40,
+      "text": "Omen's ultimate allows him to teleport inside the teleporter room on Bind."
+    },
+    {
+      "id": 41,
+      "text": "Omen's Paranoia does not travel through teleporters."
+    },
+    {
+      "id": 42,
+      "text": "One of Cypher's codenames is 'Gumshoe.'"
+    },
+    {
+      "id": 43,
+      "text": "Skye's bird, Reyna's leer, and Cypher's cage can block incoming bullets."
+    },
+    {
+      "id": 44,
+      "text": "Most abilities cannot destroy Kay/o's suppression blade, with the exception of his own molly."
+    },
+    {
+      "id": 45,
+      "text": "Phoenix's Curveball bounces off walls and floors."
+    }
+  ]
+}
