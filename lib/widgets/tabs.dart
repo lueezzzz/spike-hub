@@ -105,8 +105,7 @@ class _TabsState extends State<Tabs> {
                 context: context,
                 title: "MAPS",
                 future: cachedMaps,
-                itemBuilder: (context, item, index) =>
-                    MapCard(map: item, index: index),
+                itemBuilder: (context, item, index) => MapCard(maps: item, index: index),
                 limit: widget.showAll ? 999 : 4,
                 axisCount: 1,
                 axisSpacing: 0,
