@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:spike_hub/services/favorite_agent_handler.dart';
+import 'package:spike_hub/services/feature_handler.dart';
 import 'package:spike_hub/widgets/feature-widgets/feature_card.dart';
 
 class FeatureCarousel extends StatefulWidget {
@@ -11,7 +11,7 @@ class FeatureCarousel extends StatefulWidget {
 }
 
 class _FeatureCarouselState extends State<FeatureCarousel> {
-  final FavoriteAgentHandler fh = FavoriteAgentHandler();
+  final FeatureHandler fh = FeatureHandler();
   List<Map<String, dynamic>> featuresList = [];
   bool isLoading = true;
 
