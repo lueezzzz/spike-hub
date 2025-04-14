@@ -5,8 +5,6 @@ import 'package:flutter/services.dart';
 class FeatureHandler {
   final Random ran = Random();
 
-  FeatureHandler();
-
   Future<List<Map<String, dynamic>>> loadFeatures() async {
     final List<Map<String, dynamic>> features = [];
 
