@@ -53,9 +53,10 @@ class SidebarMenu extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
+                fontFamily: 'DrukWide',
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
               ),
             ),
           ],

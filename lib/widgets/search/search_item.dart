@@ -222,6 +222,8 @@ class _SearchItem extends State<SearchItem> {
           ),
           dividerColor: Colors.transparent,
           headerTextStyle: TextStyle(
+            fontFamily: 'FuturaCn',
+            fontWeight: FontWeight.w500,
             color: Color.fromRGBO(248, 248, 248, 1),
           ),
           builder: (BuildContext context, SearchController controller) {
@@ -235,10 +237,19 @@ class _SearchItem extends State<SearchItem> {
                 EdgeInsets.symmetric(horizontal: 20.0),
               ),
               leading: const Icon(Icons.search),
+              textStyle: WidgetStatePropertyAll<TextStyle>(
+                TextStyle(
+                  fontFamily: 'FuturaCn',
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromRGBO(31, 35, 38, 1),
+                ),
+              ),
               hintText: "SEARCH",
               hintStyle: const WidgetStatePropertyAll<TextStyle>(TextStyle(
+                fontFamily: 'AkiraExpanded',
                 fontWeight: FontWeight.bold,
-                fontSize: 14.0,
+                fontSize: 10.0,
+                height: 5,
                 color: Color.fromRGBO(31, 35, 38, 1),
               )),
               onTap: () => controller.openView(),
@@ -276,7 +287,9 @@ class _SearchItem extends State<SearchItem> {
                             textAlign: TextAlign.center,
                             'Type to search for agents, abilities, weapons, gear, or maps',
                             style: TextStyle(
-                              color: Color.fromRGBO(248, 248, 248, 1),
+                              fontFamily: 'FuturaCn',
+                              fontWeight: FontWeight.w700,
+                              color: Color.fromRGBO(248, 248, 248, 0.7),
                             ),
                           ),
                         ),
@@ -293,6 +306,8 @@ class _SearchItem extends State<SearchItem> {
                             title: Text(
                               search,
                               style: TextStyle(
+                                  fontFamily: 'FuturaCn',
+                                  fontWeight: FontWeight.w500,
                                   color: Color.fromRGBO(248, 248, 248, 1)),
                             ),
                             onTap: () {
@@ -348,7 +363,10 @@ class _SearchItem extends State<SearchItem> {
                     padding: EdgeInsets.all(16.0),
                     child: Text(
                       'No results found',
-                      style: TextStyle(color: Color.fromRGBO(248, 248, 248, 1)),
+                      style: TextStyle(
+                          fontFamily: 'FuturaCn',
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(248, 248, 248, 1)),
                     ),
                   ),
                 ),
@@ -373,9 +391,11 @@ class _SearchItem extends State<SearchItem> {
                   child: Text(
                     type.toUpperCase(),
                     style: const TextStyle(
-                      color: Color.fromRGBO(255, 70, 86, 1),
-                      fontWeight: FontWeight.bold,
+                      fontFamily: 'DrukWide',
+                      fontWeight: FontWeight.w500,
                       fontSize: 16.0,
+                      letterSpacing: 1.2,
+                      color: Color.fromRGBO(255, 70, 86, 1),
                     ),
                   ),
                 ),
@@ -409,6 +429,8 @@ class _SearchItem extends State<SearchItem> {
                     title: Text(
                       item.name,
                       style: TextStyle(
+                        fontFamily: 'FuturaCn',
+                        fontWeight: FontWeight.w700,
                         color: Color.fromRGBO(248, 248, 248, 1),
                       ),
                     ),
@@ -416,12 +438,16 @@ class _SearchItem extends State<SearchItem> {
                         ? Text(
                             '${item.parentName} - ${getAbilityTypeText(item.subtype!)}',
                             style: TextStyle(
+                              fontFamily: 'FuturaCn',
+                              fontWeight: FontWeight.w500,
                               color: Color.fromRGBO(248, 248, 248, 0.7),
                             ),
                           )
                         : Text(
                             item.type,
                             style: TextStyle(
+                              fontFamily: 'FuturaCn',
+                              fontWeight: FontWeight.w500,
                               color: Color.fromRGBO(248, 248, 248, 0.7),
                             ),
                           ),
@@ -449,10 +475,21 @@ class _SearchItem extends State<SearchItem> {
                                   title: Text(
                                     item.name.toUpperCase(),
                                     style: TextStyle(
+                                      fontFamily: 'AkiraExpanded',
                                       fontWeight: FontWeight.bold,
+                                      letterSpacing: 1.2,
+                                      color: Color.fromRGBO(31, 35, 38, 1),
                                     ),
                                   ),
-                                  content: Text(item.description!),
+                                  content: Text(
+                                    item.description!,
+                                    style: TextStyle(
+                                      fontFamily: 'FuturaCn',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15,
+                                      color: Color.fromRGBO(31, 35, 38, 1),
+                                    ),
+                                  ),
                                   actions: [
                                     TextButton(
                                       onPressed: () {
@@ -461,8 +498,11 @@ class _SearchItem extends State<SearchItem> {
                                       child: const Text(
                                         'Close',
                                         style: TextStyle(
+                                          fontFamily: 'DrukWide',
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 12,
+                                          letterSpacing: 1.2,
                                           color: Color.fromRGBO(31, 35, 38, 1),
-                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
@@ -475,8 +515,11 @@ class _SearchItem extends State<SearchItem> {
                                       child: const Text(
                                         'View Details',
                                         style: TextStyle(
+                                          fontFamily: 'DrukWide',
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 12,
+                                          letterSpacing: 1.2,
                                           color: Color.fromRGBO(255, 70, 86, 1),
-                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),

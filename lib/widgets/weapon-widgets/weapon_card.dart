@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:spike_hub/models/weapons.dart';
 import 'package:spike_hub/widgets/weapon-widgets/weapon_details.dart';
-import 'package:spike_hub/widgets/weapon-widgets/weapon_skins_botom_sheet.dart';
+import 'package:spike_hub/widgets/weapon-widgets/weapon_skins_bottom_sheet.dart';
 
 class WeaponCard extends StatelessWidget {
   final Weapon weapon;
@@ -97,9 +97,11 @@ class WeaponCard extends StatelessWidget {
               child: Text(
                 weapon.displayName!.toUpperCase(),
                 style: TextStyle(
-                  color: Color.fromRGBO(248, 248, 248, 1),
-                  fontSize: 20,
+                  fontFamily: 'AkiraExpanded',
                   fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  letterSpacing: 1.2,
+                  color: Color.fromRGBO(248, 248, 248, 1),
                 ),
               ),
             ),

@@ -57,7 +57,6 @@ class _AbilityDetailsState extends State<AbilityDetails> {
                         height: 120,
                       ),
                     ),
-
                     Container(
                       color: Color.fromRGBO(248, 248, 248, 1),
                       padding: const EdgeInsets.all(16),
@@ -68,9 +67,10 @@ class _AbilityDetailsState extends State<AbilityDetails> {
                             widget.ability.displayName?.toUpperCase() ??
                                 "ABILITY",
                             style: const TextStyle(
-                              color: Color.fromRGBO(31, 35, 38, 1),
-                              fontSize: 24,
+                              fontFamily: 'AkiraExpanded',
                               fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                              color: Color.fromRGBO(31, 35, 38, 1),
                               letterSpacing: 1.2,
                             ),
                           ),
@@ -79,9 +79,11 @@ class _AbilityDetailsState extends State<AbilityDetails> {
                             widget.ability.description ??
                                 "No description available.",
                             style: const TextStyle(
-                              color: Color.fromRGBO(31, 35, 38, 1),
-                              fontSize: 14,
+                              fontFamily: 'FuturaCn',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
                               height: 1.5,
+                              color: Color.fromRGBO(31, 35, 38, 1),
                             ),
                           ),
                         ],

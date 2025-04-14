@@ -34,12 +34,12 @@ class WeaponSkinDetails extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-             
                   Container(
                     width: double.infinity,
                     height: 200,
+                    padding: EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
-                      color: Colors.black12,
+                      color: Color.fromRGBO(248, 248, 248, 0.05),
                     ),
                     child: skin.displayIcon != null
                         ? Image.network(
@@ -54,15 +54,16 @@ class WeaponSkinDetails extends StatelessWidget {
                             ),
                           ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: Text(
                       skin.displayName?.toUpperCase() ?? 'UNKNOWN SKIN',
                       style: TextStyle(
-                        color: Colors.white,
+                        fontFamily: 'DrukWide',
+                        fontWeight: FontWeight.w800,
                         fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                        color: Color.fromRGBO(248, 248, 248, 1),
                       ),
                     ),
                   ),

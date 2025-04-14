@@ -78,9 +78,11 @@ class MapCard extends StatelessWidget {
               child: Text(
                 maps.displayName!.toUpperCase(),
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
+                  fontFamily: 'AkiraExpanded',
                   fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  letterSpacing: 1.2,
+                  color: Color.fromRGBO(248, 248, 248, 1),
                 ),
               ),
             ),

@@ -61,11 +61,13 @@ class WeaponSkinsBottomSheet extends StatelessWidget {
                       color: Color.fromRGBO(15, 25, 35, 1),
                       child: Text(
                         textAlign: TextAlign.center,
-                        'Skins for ${weapon.displayName}',
+                        '${weapon.displayName} Skin'.toUpperCase(),
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                          fontFamily: 'DrukWide',
+                          fontWeight: FontWeight.w800,
+                          fontSize: 24,
+                          letterSpacing: 1.2,
+                          color: Color.fromRGBO(248, 248, 248, 1),
                         ),
                       ),
                     ),
@@ -84,7 +86,7 @@ class WeaponSkinsBottomSheet extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final skin = displaySkins[index];
                           return Material(
-                            color: Color.fromRGBO(15, 25, 35, 0.5),
+                            color: Color.fromRGBO(248, 248, 248, 0.05),
                             shape: BeveledRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(15.0),
@@ -108,7 +110,11 @@ class WeaponSkinsBottomSheet extends StatelessWidget {
                                     child: Text(
                                       skin.displayName ?? 'Unnamed',
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 12),
+                                        fontFamily: 'FuturaCn',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                        color: Color.fromRGBO(248, 248, 248, 1),
+                                      ),
                                       textAlign: TextAlign.center,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,

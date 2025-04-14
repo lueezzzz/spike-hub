@@ -23,6 +23,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
         title: Text(
           'Clear Favorites',
           style: TextStyle(
+            fontFamily: 'AkiraExpanded',
             fontWeight: FontWeight.bold,
             color: Color.fromRGBO(31, 35, 38, 1),
           ),
@@ -30,6 +31,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
         content: Text(
           'Are you sure you want to remove all favorite agents?',
           style: TextStyle(
+            fontFamily: 'FuturaCn',
+            fontWeight: FontWeight.w500,
+            fontSize: 15,
             color: Color.fromRGBO(31, 35, 38, 1),
           ),
         ),
@@ -39,7 +43,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
             child: Text(
               'Cancel',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                fontFamily: 'DrukWide',
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+                letterSpacing: 1.2,
                 color: Color.fromRGBO(31, 35, 38, 1),
               ),
             ),
@@ -49,7 +56,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
             child: Text(
               'Clear All',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                fontFamily: 'DrukWide',
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+                letterSpacing: 1.2,
                 color: Color.fromRGBO(255, 70, 86, 1),
               ),
             ),
@@ -86,9 +96,11 @@ class _FavoritesPageState extends State<FavoritesPage> {
               Text(
                 'FAVORITE AGENTS',
                 style: const TextStyle(
+                  fontFamily: 'DrukWide',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  letterSpacing: 1.2,
                   color: Color.fromRGBO(248, 248, 248, 1),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -125,16 +137,20 @@ class _FavoritesPageState extends State<FavoritesPage> {
                   Text(
                     'No favorites yet',
                     style: TextStyle(
+                      fontFamily: 'FuturaCn',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
                       color: Color.fromRGBO(248, 248, 248, 0.7),
-                      fontSize: 18,
                     ),
                   ),
                   SizedBox(height: 8),
                   Text(
                     'Tap the star icon on any agent card to add it to favorites',
                     style: TextStyle(
+                      fontFamily: 'FuturaCn',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
                       color: Color.fromRGBO(248, 248, 248, 0.5),
-                      fontSize: 14,
                     ),
                     textAlign: TextAlign.center,
                   ),

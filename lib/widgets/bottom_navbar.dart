@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class BottomNavbar extends StatelessWidget {
   final bool isOpen;
-  final VoidCallback onMenuToggle; 
+  final VoidCallback onMenuToggle;
 
   const BottomNavbar({
     super.key,
@@ -18,16 +18,14 @@ class BottomNavbar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 7.0, left: 10.0),
-            child: Container(
-              width: 40,
-              height: 30,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/valorant-logo.png'),
-                  fit: BoxFit.contain,
-                ),
+          Container(
+            clipBehavior: Clip.antiAlias,
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/icon.png'),
+                fit: BoxFit.contain,
               ),
             ),
           ),
@@ -39,7 +37,7 @@ class BottomNavbar extends StatelessWidget {
                 color: Color.fromRGBO(248, 248, 248, 1),
                 size: 30,
               ),
-              onPressed: onMenuToggle, 
+              onPressed: onMenuToggle,
             ),
           ),
         ],

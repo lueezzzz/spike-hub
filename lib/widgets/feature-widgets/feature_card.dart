@@ -35,8 +35,10 @@ class FeatureCard extends StatelessWidget {
                   Text(
                     title.toUpperCase(),
                     style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
+                      fontFamily: 'DrukWide',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                      letterSpacing: 1.2,
                       color: Color.fromRGBO(255, 70, 86, 1),
                     ),
                   ),
@@ -44,7 +46,9 @@ class FeatureCard extends StatelessWidget {
                   Text(
                     feature,
                     style: const TextStyle(
-                      fontSize: 14,
+                      fontFamily: 'FuturaCn',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
                       color: Color.fromRGBO(248, 248, 248, 1),
                       height: 1.3,
                     ),

@@ -20,9 +20,10 @@ class WeaponStatsItem extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
+            fontFamily: 'FuturaCn',
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
             color: Color.fromRGBO(248, 248, 248, 1),
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
           ),
         ),
         const SizedBox(height: 8),
@@ -31,9 +32,10 @@ class WeaponStatsItem extends StatelessWidget {
           Text(
             value!,
             style: const TextStyle(
-              color: Color.fromRGBO(248, 248, 248, 1),
-              fontSize: 18,
+              fontFamily: 'FuturaCn',
               fontWeight: FontWeight.w500,
+              fontSize: 16,
+              color: Color.fromRGBO(248, 248, 248, 1),
             ),
           ),
       ],

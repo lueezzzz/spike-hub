@@ -18,15 +18,16 @@ class CollapseItems extends StatelessWidget {
             const Icon(
               Icons.arrow_left,
               color: Color.fromRGBO(248, 248, 248, 1),
-            ), 
+            ),
             const SizedBox(width: 4),
             Text(
               title,
               style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color:
-                    Color.fromRGBO(248, 248, 248, 1), 
+                fontFamily: 'DrukWide',
+                fontWeight: FontWeight.w500,
+                fontSize: 24,
+                letterSpacing: 1.2,
+                color: Color.fromRGBO(248, 248, 248, 1),
               ),
             ),
           ],
