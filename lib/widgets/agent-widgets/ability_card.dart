@@ -52,8 +52,10 @@ class AbilityCard extends StatelessWidget {
             Text(
               ability.displayName ?? '',
               style: const TextStyle(
+                fontFamily: 'FuturaCn',
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
                 color: Color.fromRGBO(248, 248, 248, 1),
-                fontSize: 12,
               ),
             ),
           ],

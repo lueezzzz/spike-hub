@@ -65,7 +65,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/valorant-logo.png
+    - assets/images/icon.png
     - assets/images/block.png
     - assets/data/features.json
 
@@ -94,6 +94,27 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+  fonts:
+    - family: AkiraExpanded
+      fonts:
+        - asset: fonts/AkiraExpanded-Bold.ttf
+          weight: 700
+    
+    - family: DrukWide
+      fonts:
+        - asset: fonts/DrukWide-Medium.otf
+          weight: 500
+        - asset: fonts/DrukWide-Heavy.otf
+          weight: 800
+    
+    - family: FuturaCn
+      fonts:
+        - asset: fonts/FuturaCn-Medium.ttf
+          weight: 500
+        - asset: fonts/FuturaCn-Bold.ttf
+          weight: 700
+
 
 flutter_native_splash:
   android: true

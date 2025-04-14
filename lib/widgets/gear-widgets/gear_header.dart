@@ -8,7 +8,7 @@ class GearHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -16,9 +16,11 @@ class GearHeader extends StatelessWidget {
           Text(
             gear.displayName!.toUpperCase(),
             style: const TextStyle(
+              fontFamily: 'DrukWide',
+              fontWeight: FontWeight.w800,
+              fontSize: 20,
+              letterSpacing: 1.2,
               color: Color.fromRGBO(31, 35, 38, 1),
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
             ),
           ),
           Container(
@@ -30,9 +32,11 @@ class GearHeader extends StatelessWidget {
             child: Text(
               gear.shopData!.cost!.toString(),
               style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
+                fontFamily: 'AkiraExpanded',
                 fontWeight: FontWeight.bold,
+                fontSize: 14,
+                letterSpacing: 1.2,
+                color: Colors.white,
               ),
             ),
           ),

@@ -72,9 +72,11 @@ class _GearDetailsState extends State<GearDetails> {
                           Text(
                             gear.description ?? '',
                             style: const TextStyle(
-                              color: Color.fromRGBO(31, 35, 38, 1),
-                              fontSize: 14,
+                              fontFamily: 'FuturaCn',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
                               height: 1.5,
+                              color: Color.fromRGBO(31, 35, 38, 1),
                             ),
                           ),
                         ],

@@ -17,9 +17,11 @@ class WeaponHeader extends StatelessWidget {
           Text(
             weapon.displayName!.toUpperCase(),
             style: const TextStyle(
+              fontFamily: 'DrukWide',
+              fontWeight: FontWeight.w800,
+              fontSize: 26,
+              letterSpacing: 1.2,
               color: Color.fromRGBO(248, 248, 248, 1),
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
             ),
           ),
           Container(
@@ -31,9 +33,11 @@ class WeaponHeader extends StatelessWidget {
             child: Text(
               weapon.shopData!.cost!.toString(),
               style: const TextStyle(
-                color: Color.fromRGBO(248, 248, 248, 1),
-                fontSize: 18,
+                fontFamily: 'AkiraExpanded',
                 fontWeight: FontWeight.bold,
+                fontSize: 16,
+                letterSpacing: 1.2,
+                color: Color.fromRGBO(248, 248, 248, 1),
               ),
             ),
           ),

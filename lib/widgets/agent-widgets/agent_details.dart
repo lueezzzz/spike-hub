@@ -63,7 +63,8 @@ class _AgentDetailsState extends State<AgentDetails> {
                   Text(
                     'Added to favorites',
                     style: TextStyle(
-                      decoration: TextDecoration.underline,
+                      fontFamily: 'FuturaCn',
+                      fontSize: 16,
                       color: Color.fromRGBO(248, 248, 248, 1),
                     ),
                   ),
@@ -71,8 +72,9 @@ class _AgentDetailsState extends State<AgentDetails> {
                   Text(
                     'Tap to View',
                     style: TextStyle(
+                      fontFamily: 'FuturaCn',
                       fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
+                      fontSize: 16,
                       color: Color.fromRGBO(248, 248, 248, 1),
                     ),
                   ),
@@ -149,9 +151,11 @@ class _AgentDetailsState extends State<AgentDetails> {
                     Text(
                       widget.agent.displayName?.toUpperCase() ?? '',
                       style: const TextStyle(
-                        color: Color.fromRGBO(248, 248, 248, 1),
+                        fontFamily: 'DrukWide',
+                        fontWeight: FontWeight.w500,
                         fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                        color: Color.fromRGBO(248, 248, 248, 1),
                       ),
                     ),
                     const Spacer(),
@@ -200,9 +204,10 @@ class _AgentDetailsState extends State<AgentDetails> {
                           widget.agent.role?.displayName?.toUpperCase() ??
                               'UNKNOWN ROLE',
                           style: const TextStyle(
-                            color: Color.fromRGBO(248, 248, 248, 1),
-                            fontSize: 20,
+                            fontFamily: 'AkiraExpanded',
                             fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Color.fromRGBO(248, 248, 248, 1),
                             letterSpacing: 1.2,
                           ),
                         ),

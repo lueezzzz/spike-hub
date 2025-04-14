@@ -25,9 +25,10 @@ class WeaponDamageStatsContainer extends StatelessWidget {
             child: const Text(
               "DAMAGE",
               style: TextStyle(
+                fontFamily: 'FuturaCn',
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
                 color: Color.fromRGBO(248, 248, 248, 1),
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
               ),
             ),
           ),

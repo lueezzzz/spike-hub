@@ -27,9 +27,11 @@ class MapDetailsPage extends StatelessWidget {
               Text(
                 maps.displayName?.toUpperCase() ?? '',
                 style: const TextStyle(
+                  fontFamily: 'DrukWide',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  letterSpacing: 1.2,
                   color: Color.fromRGBO(248, 248, 248, 1),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],

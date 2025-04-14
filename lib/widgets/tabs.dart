@@ -89,8 +89,9 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
             child: TabBar(
               controller: widget.controller,
               labelStyle: const TextStyle(
-                fontSize: 12,
+                fontFamily: 'FuturaCn',
                 fontWeight: FontWeight.bold,
+                fontSize: 16,
                 letterSpacing: 1.2,
               ),
               indicator: MaterialIndicator(
@@ -192,13 +193,15 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
           child: TabBar(
             controller: controllerAgentRole,
             isScrollable: true,
-            tabAlignment: TabAlignment.start,
+            tabAlignment: TabAlignment.center,
             labelStyle: const TextStyle(
-              fontSize: 12,
+              fontFamily: 'FuturaCn',
               fontWeight: FontWeight.bold,
+              fontSize: 14,
               letterSpacing: 1.2,
             ),
-            labelPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+            labelPadding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.0),
             indicator: MaterialIndicator(
               color: const Color.fromRGBO(248, 248, 248, 1),
               tabPosition: TabPosition.bottom,
@@ -268,13 +271,15 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
           child: TabBar(
             controller: controllerGunType,
             isScrollable: true,
-            tabAlignment: TabAlignment.start,
+            tabAlignment: TabAlignment.center,
             labelStyle: const TextStyle(
-              fontSize: 12,
+              fontFamily: 'FuturaCn',
               fontWeight: FontWeight.bold,
+              fontSize: 14,
               letterSpacing: 1.2,
             ),
-            labelPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+            labelPadding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.0),
             indicator: MaterialIndicator(
               color: const Color.fromRGBO(248, 248, 248, 1),
               tabPosition: TabPosition.bottom,
@@ -360,8 +365,9 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
             child: const Text(
               "SEE ALL",
               style: TextStyle(
+                fontFamily: 'AkiraExpanded',
                 fontWeight: FontWeight.bold,
-                letterSpacing: 1.6,
+                letterSpacing: 1.2,
                 shadows: [
                   Shadow(
                       color: Color.fromRGBO(31, 35, 38, 1),

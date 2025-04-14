@@ -61,18 +61,22 @@ class _MapDetailsState extends State<MapDetails> {
                           Text(
                             widget.maps.displayName!.toUpperCase(),
                             style: const TextStyle(
+                              fontFamily: 'DrukWide',
+                              fontWeight: FontWeight.w800,
+                              fontSize: 20,
+                              letterSpacing: 1.2,
                               color: Color.fromRGBO(248, 248, 248, 1),
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           const SizedBox(height: 10),
                           Text(
                             getMapDescription(widget.maps.displayName!),
                             style: const TextStyle(
-                              color: Color.fromRGBO(248, 248, 248, 1),
-                              fontSize: 14,
+                              fontFamily: 'FuturaCn',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
                               height: 1.5,
+                              color: Color.fromRGBO(248, 248, 248, 1),
                             ),
                           ),
                         ],
