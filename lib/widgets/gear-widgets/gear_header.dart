@@ -18,7 +18,7 @@ class GearHeader extends StatelessWidget {
             style: const TextStyle(
               fontFamily: 'DrukWide',
               fontWeight: FontWeight.w800,
-              fontSize: 20,
+              fontSize: 17,
               letterSpacing: 1.2,
               color: Color.fromRGBO(31, 35, 38, 1),
             ),
