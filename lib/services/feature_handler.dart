@@ -1,10 +1,8 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/services.dart';
 
 class FeatureHandler {
-  final Random ran = Random();
-
+ 
   Future<List<Map<String, dynamic>>> loadFeatures() async {
     final List<Map<String, dynamic>> features = [];
 
